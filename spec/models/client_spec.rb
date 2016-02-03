@@ -1,15 +1,16 @@
 # == Schema Information
 #
-# Table name: welcomes
+# Table name: clients
 #
 #  id         :integer          not null, primary key
-#  index      :string
+#  name       :string
+#  client_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'rails_helper'
 
-RSpec.describe Welcome, type: :model do
+RSpec.describe Client, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
