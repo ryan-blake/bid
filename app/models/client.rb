@@ -26,4 +26,10 @@ class Client < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :jobs
   has_many :laborers, through: :jobs
+  enum role: [:standard, :premium, :admin]
+
+
+  def init
+      self.role  ||= "standard"          #will set the default value only if it's nil
+    end
 end

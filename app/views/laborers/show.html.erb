@@ -1,3 +1,20 @@
+<div class="row">
+ <div class="col-md-8">
+   <% @jobs.each do |job| %>
+   <div class="media">
+     <div class="media-body">
+       <h4 class="media-heading">
+         <%= link_to job.title, job %>
+       </h4>
+       <small>
+         <%= job.description %>
+       </small>
+     </div>
+   </div>
+   <% end %>
+ </div>
+
+
 <p id="notice"><%= notice %></p>
 
 <%= link_to 'Edit', edit_laborer_path(@laborer) %> |

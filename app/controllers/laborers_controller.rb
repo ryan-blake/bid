@@ -10,6 +10,10 @@ class LaborersController < ApplicationController
   # GET /laborers/1
   # GET /laborers/1.json
   def show
+    if params[:id]
+        @laborer = Laborer.find(params[:id])
+      end
+         @jobs = @laborer.jobs.all
   end
 
   # GET /laborers/new

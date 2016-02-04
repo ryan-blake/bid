@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203014157) do
+ActiveRecord::Schema.define(version: 20160204061909) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160203014157) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "role"
   end
 
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true
@@ -39,7 +40,12 @@ ActiveRecord::Schema.define(version: 20160203014157) do
     t.integer  "job_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "client_id"
+    t.integer  "laborer_id"
   end
+
+  add_index "jobs", ["client_id"], name: "index_jobs_on_client_id"
+  add_index "jobs", ["laborer_id"], name: "index_jobs_on_laborer_id"
 
   create_table "laborers", force: :cascade do |t|
     t.string   "name"
@@ -57,6 +63,7 @@ ActiveRecord::Schema.define(version: 20160203014157) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "role"
   end
 
   add_index "laborers", ["email"], name: "index_laborers_on_email", unique: true

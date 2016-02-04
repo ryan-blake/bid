@@ -1,12 +1,14 @@
 
+
 #Creates Users
 5.times do
-  client = Client.new(
+  client = Client.create!(
   # #3
   email:   Faker::Internet.email,
   name:     Faker::Name.name,
-  password: "testtest"
-  )
+  password: "testtest",
+  role: 1
+    )
   # client.skip_confirmation!
   client.save!
 end
@@ -18,7 +20,8 @@ clients = Client.all
   # #3
   email:   Faker::Internet.email,
   name:     Faker::Name.name,
-  password: "testtest"
+  password: "testtest",
+  role: 1
   )
   # laborer.skip_confirmation!
   laborer.save!
@@ -31,12 +34,12 @@ laborers = Laborer.all
   Job.create!(
   title:       Faker::Hipster.word,
   description:    Faker::Hipster.paragraph,
-  job_id:   clients.sample,
+  laborer: laborers.sample,
   # created_at: "2015-12-10 20:24:01"
   )
 end
 
-# Create an admin user
+# Create an admin client
 # admin = User.new(
 #   name:     'Admin User',
 #   email:    'admin@example.com',
@@ -51,5 +54,5 @@ jobs = Job.all
 
 puts "Seed finished"
 puts "#{Client.count}  clients created"
-puts "#{Laborers.count}  laborers created"
+puts "#{Laborer.count}  laborers created"
 puts "#{Job.count}  jobs created"

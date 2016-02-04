@@ -11,6 +11,6 @@
 #
 
 class Job < ActiveRecord::Base
-  belongs_to :laborers
-  belongs_to :clients
+  belongs_to :laborer
+  belongs_to :client
 end

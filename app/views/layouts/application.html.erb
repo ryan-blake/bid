@@ -7,6 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <body>
+  <ul class="nav nav-tabs">
+    <li><%= link_to "bid" , root_path %></li>
+    <div class="pull-right client-info">
+      <% if current_client %>
+        <%= link_to current_client.email, edit_client_registration_path(current_client) %>
+        <%= link_to "Sign Out", destroy_client_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign In", new_client_session_path %> or
+        <%= link_to "Sign Up", new_client_registration_path %>
+      <% end %>
+    </div>
+  </ul>
 
   <div class="container">
   <% if flash[:notice] %>

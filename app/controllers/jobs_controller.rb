@@ -10,6 +10,8 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.json
   def show
+     @job = Job.find(params[:id])
+
   end
 
   # GET /jobs/new
@@ -24,7 +26,10 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.json
   def create
+
     @job = Job.new(job_params)
+    @client = @job.client
+
 
     respond_to do |format|
       if @job.save
