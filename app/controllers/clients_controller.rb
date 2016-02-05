@@ -10,7 +10,7 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
-  @client = current_user
+  @client = current_client
 
   end
 

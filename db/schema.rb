@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204061909) do
+ActiveRecord::Schema.define(version: 20160204171214) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20160204061909) do
     t.integer  "job_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "client_id"
     t.integer  "laborer_id"
+    t.integer  "client_id"
   end
 
   add_index "jobs", ["client_id"], name: "index_jobs_on_client_id"

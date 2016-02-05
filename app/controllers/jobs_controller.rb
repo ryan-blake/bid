@@ -1,10 +1,13 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show, :edit, :update, :destroy]
+
+  before_action :set_job, only: [:index, :show, :edit, :update, :destroy]
 
   # GET /jobs
   # GET /jobs.json
   def index
-    @jobs = Job.all
+      # @jobs = policy_scope(Job)
+      @jobs = Job.all
+
   end
 
   # GET /jobs/1
@@ -21,14 +24,16 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
+    @job = Job.find(params[:id])
+
   end
 
   # POST /jobs
   # POST /jobs.json
   def create
 
-    @job = Job.new(job_params)
-    @client = @job.client
+    @job.client = current_client
+    @new_job = @job.build(job_params)
 
 
     respond_to do |format|
@@ -45,6 +50,8 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1
   # PATCH/PUT /jobs/1.json
   def update
+    @laborer = current_laborer
+    @job.assign_attributes(job_params)
     respond_to do |format|
       if @job.update(job_params)
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
@@ -69,11 +76,11 @@ class JobsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
-      @job = Job.find(params[:id])
+      # @job = Job.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params[:job]
+      params.require(:job).permit(:title, :description, :laborer_id)
     end
 end

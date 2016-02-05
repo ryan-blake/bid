@@ -34,7 +34,7 @@ laborers = Laborer.all
   Job.create!(
   title:       Faker::Hipster.word,
   description:    Faker::Hipster.paragraph,
-  laborer: laborers.sample,
+  client: clients.sample,
   # created_at: "2015-12-10 20:24:01"
   )
 end

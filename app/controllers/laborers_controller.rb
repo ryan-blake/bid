@@ -30,6 +30,7 @@ class LaborersController < ApplicationController
   def create
     @laborer = Laborer.new(laborer_params)
 
+
     respond_to do |format|
       if @laborer.save
         format.html { redirect_to @laborer, notice: 'Laborer was successfully created.' }
@@ -44,6 +45,8 @@ class LaborersController < ApplicationController
   # PATCH/PUT /laborers/1
   # PATCH/PUT /laborers/1.json
   def update
+    @laborer = Topic.find(params[:id])
+    @laborer.assign_attributes(laborer_params)
     respond_to do |format|
       if @laborer.update(laborer_params)
         format.html { redirect_to @laborer, notice: 'Laborer was successfully updated.' }
@@ -73,6 +76,6 @@ class LaborersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def laborer_params
-      params[:laborer]
+      params.require(:laborer).permit(:name, :about, :email)
     end
 end

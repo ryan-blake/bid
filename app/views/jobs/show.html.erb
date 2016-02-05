@@ -6,9 +6,11 @@
     <h4>
       <%= @job.description %>
       <small>
-        submitted <%= time_ago_in_words(@job.created_at) %> ago by <%= @job.laborer.name %>
+        submitted <%= time_ago_in_words(@job.created_at) %> ago by <%= @job.client.name %>
  </div>
  <div>
+   <%= render partial: 'jobs/form', locals: { job: @job } %>
+
         <%= link_to "edit", edit_job_path(@job), class: "btn btn-primary" %>
         <%= link_to "Delete", @job , :method => :delete %>
       </small>

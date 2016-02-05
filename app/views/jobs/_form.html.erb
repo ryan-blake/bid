@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+  <% if current_laborer %>
+      <div class="form-group">
+        <%= f.label :laborer, class: 'checkbox' do %>
+          <%= f.check_box :laborer_id %> pick job
+        <% end %>
+      </div>
+    <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

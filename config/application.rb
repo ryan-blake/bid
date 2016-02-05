@@ -33,5 +33,7 @@ module Bid
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    # r5
+    # ActiveSupport.halt_callback_chains_on_return_false = false
   end
 end

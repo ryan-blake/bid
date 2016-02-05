@@ -1,5 +1,5 @@
 class ApplicationPolicy
-  attr_reader :client, :record
+  attr_reader :client, :record, :job
 
   def initialize(client, record)
     @client = client
@@ -39,10 +39,11 @@ class ApplicationPolicy
   end
 
   class Scope
-    attr_reader :client, :scope
+    attr_reader :client, :scope, :job
 
-    def initialize(client, scope)
+    def initialize(client, scope, job)
       @client = client
+      @job = Job.all
       @scope = scope
     end
 
