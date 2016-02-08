@@ -14,6 +14,8 @@
   <% if current_laborer %>
       <div class="form-group">
         <%= f.label :laborer, class: 'checkbox' do %>
+      <%=  f.check_box :tag_ids, {multiple: true}, 1, nil %>
+
           <%= f.check_box :laborer_id %> pick job
         <% end %>
       </div>

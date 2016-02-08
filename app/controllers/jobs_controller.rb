@@ -13,7 +13,7 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.json
   def show
-     @job = Job.find(params[:id])
+     @job = Job.find_by(params[:id])
 
   end
 
@@ -50,6 +50,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1
   # PATCH/PUT /jobs/1.json
   def update
+    @job = Job.find_by(params[:id])
     @laborer = current_laborer
     @job.assign_attributes(job_params)
     respond_to do |format|
@@ -66,6 +67,7 @@ class JobsController < ApplicationController
   # DELETE /jobs/1
   # DELETE /jobs/1.json
   def destroy
+    @job = Job.find(params[:id])
     @job.destroy
     respond_to do |format|
       format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }

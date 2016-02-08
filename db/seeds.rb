@@ -28,6 +28,15 @@ clients = Client.all
 end
 laborers = Laborer.all
 
+category_array = %w(Mulch Trees Mowing Garden Rocks Grass)
+
+category_array.each do |c|
+  Category.find_or_create_by(
+    name: c
+  )
+end
+
+categories = Category.all
 
 # Creates i
 20.times do
@@ -35,6 +44,7 @@ laborers = Laborer.all
   title:       Faker::Hipster.word,
   description:    Faker::Hipster.paragraph,
   client: clients.sample,
+  category: categories.sample
   # created_at: "2015-12-10 20:24:01"
   )
 end
