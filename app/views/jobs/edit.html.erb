@@ -1,6 +1,9 @@
 <h1>Editing Job</h1>
 
-<%= render 'form' %>
+<%= render partial: 'form', locals: {job: @job} %>
+
+
+
 
 <%= link_to 'Show', @job %> |
 <%= link_to 'Back', jobs_path %>

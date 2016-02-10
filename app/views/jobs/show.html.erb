@@ -1,22 +1,25 @@
 <div>
-
   <h1>
-    <%= @job.title.capitalize %> <br>
+    <%= @job.title %>
+    <small>
+      Category: <%= @job.category.name %>
+    </small>
   </h1>
-    <h4>
-      <%= @job.description %>
-      <small>
-        submitted <%= time_ago_in_words(@job.created_at) %> ago by <%= @job.client.name %>
- </div>
- <div>
-   <%= render partial: 'jobs/form', locals: { job: @job } %>
-
-        <%= link_to "edit", edit_job_path(@job), class: "btn btn-primary" %>
-        <%= link_to "Delete", @job , :method => :delete %>
-      </small>
-    </h4>
-
-
+  <h4>
+    <%= @job.description %>
+    <small>
+      submitted <%= time_ago_in_words(@job.created_at) %> ago by <%= @job.client.name %>
+    </small>
+  </h4>
 </div>
-
-<p id="notice"><%= notice %></p>
+<div>
+  <p>
+    $ <%= @job.price %>
+  </p>
+</div>
+<div>
+  <% if policy(@job).edit? %>
+    <%= link_to "edit", edit_job_path(@job), class: "btn btn-primary" %>
+    <%= link_to "Delete", @job , :method => :delete %>
+  <% end %>
+</div>

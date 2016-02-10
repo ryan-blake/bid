@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+  include Pundit
 
   before_action :set_job, only: [:index, :show, :edit, :update, :destroy]
 
@@ -14,6 +15,7 @@ class JobsController < ApplicationController
   # GET /jobs/1.json
   def show
      @job = Job.find_by(params[:id])
+     @tite = @job.title
 
   end
 
@@ -34,7 +36,7 @@ class JobsController < ApplicationController
 
     @job.client = current_client
     @new_job = @job.build(job_params)
-
+    @laborer = Laborer.find_by(params[:id])
 
     respond_to do |format|
       if @job.save
@@ -51,7 +53,8 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1.json
   def update
     @job = Job.find_by(params[:id])
-    @laborer = current_laborer
+    @laborer = Laborer.find_by(params[:id])
+
     @job.assign_attributes(job_params)
     respond_to do |format|
       if @job.update(job_params)
@@ -67,10 +70,11 @@ class JobsController < ApplicationController
   # DELETE /jobs/1
   # DELETE /jobs/1.json
   def destroy
+    require current_client
     @job = Job.find(params[:id])
     @job.destroy
     respond_to do |format|
-      format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Job was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -83,6 +87,7 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:title, :description, :laborer_id)
+      params.require(:job).permit(:title, :description, :laborer_id, :category_id, :price)
     end
+
 end

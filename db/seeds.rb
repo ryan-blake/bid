@@ -44,7 +44,8 @@ categories = Category.all
   title:       Faker::Hipster.word,
   description:    Faker::Hipster.paragraph,
   client: clients.sample,
-  category: categories.sample
+  category: categories.sample,
+
   # created_at: "2015-12-10 20:24:01"
   )
 end

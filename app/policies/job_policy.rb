@@ -14,8 +14,12 @@ class JobPolicy < ApplicationPolicy
     end
   end
 
+  def edit?
+    update?
+  end
+
   def update?
-    client.present?
+    client.present? && (client == job.client || client.admin?)
   end
 
   class Scope

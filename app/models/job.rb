@@ -17,6 +17,7 @@ class Job < ActiveRecord::Base
   belongs_to :laborer
   belongs_to :client
   belongs_to :category
+  has_many :submits
 
   default_scope { order('created_at DESC') }
 

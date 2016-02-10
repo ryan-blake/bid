@@ -1,25 +1,41 @@
-<%= form_for(@job) do |f| %>
-  <% if @job.errors.any? %>
+<%= form_for(job) do |f| %>
+  <% if job.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
 
       <ul>
-      <% @job.errors.full_messages.each do |message| %>
+      <% job.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <% if current_laborer %>
-      <div class="form-group">
-        <%= f.label :laborer, class: 'checkbox' do %>
-      <%=  f.check_box :tag_ids, {multiple: true}, 1, nil %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
 
-          <%= f.check_box :laborer_id %> pick job
-        <% end %>
-      </div>
-    <% end %>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :category %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :laborer %>
+    <%= f.collection_select :laborer_id, Laborer.all, :id, :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "bid" %>
+    <%= f.text_field :price, class: 'form-control' %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

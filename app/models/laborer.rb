@@ -29,6 +29,7 @@ class Laborer < ActiveRecord::Base
   has_many :jobs
   has_many :clients, through: :jobs
   enum role: [:standard, :premium, :admin]
+  has_many :submits
 
 
   def init
