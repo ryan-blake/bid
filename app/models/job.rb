@@ -18,6 +18,7 @@ class Job < ActiveRecord::Base
   belongs_to :client
   belongs_to :category
   has_many :submits
+  accepts_nested_attributes_for :submits
 
   default_scope { order('created_at DESC') }
 

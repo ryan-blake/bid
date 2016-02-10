@@ -14,8 +14,7 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.json
   def show
-     @job = Job.find_by(params[:id])
-     @tite = @job.title
+     @job = Job.find(params[:id])
 
   end
 
@@ -26,7 +25,8 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
-    @job = Job.find(params[:id])
+    @job = Job.find_by(params[:id])
+    @laborer = Laborer.find(params[:laborer_id])
 
   end
 
@@ -54,6 +54,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find_by(params[:id])
     @laborer = Laborer.find_by(params[:id])
+
 
     @job.assign_attributes(job_params)
     respond_to do |format|

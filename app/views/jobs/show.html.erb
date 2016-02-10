@@ -14,7 +14,11 @@
 </div>
 <div>
   <p>
+    <% if @job.price? %>
     $ <%= @job.price %>
+    <% else %>
+    $
+    <%end%>
   </p>
 </div>
 <div>
