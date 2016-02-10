@@ -2,6 +2,7 @@ class CreateSubmits < ActiveRecord::Migration
   def change
     create_table :submits do |t|
       t.references :job, index: true, foreign_key: true
+      t.references :laborer_id, index: true, foreign_key: true
 
       t.integer :price
 

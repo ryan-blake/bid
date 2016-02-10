@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210173557) do
+ActiveRecord::Schema.define(version: 20160210215032) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -86,5 +86,16 @@ ActiveRecord::Schema.define(version: 20160210173557) do
   end
 
   add_index "submits", ["job_id"], name: "index_submits_on_job_id"
+
+  create_table "submittings", force: :cascade do |t|
+    t.integer  "submit_id"
+    t.integer  "submittable_id"
+    t.string   "submittable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "submittings", ["submit_id"], name: "index_submittings_on_submit_id"
+  add_index "submittings", ["submittable_type", "submittable_id"], name: "index_submittings_on_submittable_type_and_submittable_id"
 
 end

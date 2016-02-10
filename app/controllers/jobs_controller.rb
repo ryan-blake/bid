@@ -26,7 +26,6 @@ class JobsController < ApplicationController
   # GET /jobs/1/edit
   def edit
     @job = Job.find_by(params[:id])
-    @laborer = Laborer.find(params[:laborer_id])
 
   end
 
