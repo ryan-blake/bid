@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210215032) do
+ActiveRecord::Schema.define(version: 20160210220455) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -73,19 +73,23 @@ ActiveRecord::Schema.define(version: 20160210215032) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "role"
+    t.integer  "job_id"
   end
 
   add_index "laborers", ["email"], name: "index_laborers_on_email", unique: true
+  add_index "laborers", ["job_id"], name: "index_laborers_on_job_id"
   add_index "laborers", ["reset_password_token"], name: "index_laborers_on_reset_password_token", unique: true
 
   create_table "submits", force: :cascade do |t|
     t.integer  "job_id"
+    t.integer  "laborer_id_id"
     t.integer  "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "submits", ["job_id"], name: "index_submits_on_job_id"
+  add_index "submits", ["laborer_id_id"], name: "index_submits_on_laborer_id_id"
 
   create_table "submittings", force: :cascade do |t|
     t.integer  "submit_id"

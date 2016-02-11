@@ -15,6 +15,7 @@ class JobsController < ApplicationController
   # GET /jobs/1.json
   def show
      @job = Job.find(params[:id])
+     @laborer = @job.laborer
 
   end
 
@@ -25,7 +26,7 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
-    @job = Job.find_by(params[:id])
+    @job = Job.find(params[:id])
 
   end
 
@@ -35,7 +36,7 @@ class JobsController < ApplicationController
 
     @job.client = current_client
     @new_job = @job.build(job_params)
-    @laborer = Laborer.find_by(params[:id])
+    @laborer = Laborer.find(params[:id])
 
     respond_to do |format|
       if @job.save
@@ -52,7 +53,6 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1.json
   def update
     @job = Job.find_by(params[:id])
-    @laborer = Laborer.find_by(params[:id])
 
 
     @job.assign_attributes(job_params)
@@ -79,15 +79,21 @@ class JobsController < ApplicationController
     end
   end
 
-  private
+
+
+
+private
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_job
       # @job = Job.find(params[:id])
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:title, :description, :laborer_id, :category_id, :price)
+      params.require(:job).permit(:title, :description, :laborer, :category_id, :price)
     end
 
 end

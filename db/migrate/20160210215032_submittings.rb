@@ -6,6 +6,6 @@ class Submittings < ActiveRecord::Migration
         t.references :submittable, polymorphic: true, index: true
         t.timestamps null: false
       end
-      add_foreign_key :labelings, :submit
+      add_foreign_key :submittings, :submit
     end
 end

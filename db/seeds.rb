@@ -38,6 +38,8 @@ end
 
 categories = Category.all
 
+
+
 # Creates i
 20.times do
   Job.create!(
@@ -45,6 +47,7 @@ categories = Category.all
   description:    Faker::Hipster.paragraph,
   client: clients.sample,
   category: categories.sample,
+  laborer: laborers.sample
 
   # created_at: "2015-12-10 20:24:01"
   )
