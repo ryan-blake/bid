@@ -1,4 +1,21 @@
 
+c = Client.find_or_initialize_by(
+  email: 'richardrpanzer@gmail.com',
+  name: 'Ricky Panzer',
+  role: 2
+)
+
+c.password = "testtest"
+c.save!
+
+l = Laborer.find_or_initialize_by(
+  email: 'richardrpanzer@gmail.com',
+  name: 'Ricky Panzer',
+  role: 2
+)
+
+l.password = "testtest"
+l.save!
 
 #Creates Users
 5.times do
@@ -26,7 +43,9 @@ clients = Client.all
   # laborer.skip_confirmation!
   laborer.save!
 end
+
 laborers = Laborer.all
+
 
 category_array = %w(Mulch Trees Mowing Garden Rocks Grass)
 
@@ -39,8 +58,7 @@ end
 categories = Category.all
 
 
-
-# Creates i
+# Creates jobs
 20.times do
   Job.create!(
   title:       Faker::Hipster.word,
@@ -65,8 +83,20 @@ end
 
 jobs = Job.all
 
+10.times do
+  Submission.create!(
+    price: 2..12,
+    laborer: laborers.sample,
+    job: jobs.sample
+
+  )
+
+end
+submits = Submission.all
+
 
 puts "Seed finished"
 puts "#{Client.count}  clients created"
 puts "#{Laborer.count}  laborers created"
+puts "#{Submission.count} submits created"
 puts "#{Job.count}  jobs created"

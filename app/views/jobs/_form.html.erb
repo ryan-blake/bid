@@ -26,14 +26,8 @@
     <%= f.collection_select :category_id, Category.all, :id, :name, class: 'form-control' %>
   </div>
 <br>
-  <div class="form-group">
-    <%= f.label :laborer %>
-    <%= f.collection_select :laborer_id, Laborer.all, :id, :name, class: 'form-control' %>
-  </div>
 
-  <div class="form-group">
-    <%= f.number_field :price, class: 'form-control' %>
-  </div>
+
 </br>
 
   <div class="actions">

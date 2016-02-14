@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: submits
+# Table name: submissions
 #
 #  id         :integer          not null, primary key
 #  job_id     :integer
@@ -10,8 +10,8 @@
 #  updated_at :datetime         not null
 #
 
-require 'rails_helper'
-
-RSpec.describe Submit, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+class Submission < ActiveRecord::Base
+  belongs_to :job
+  belongs_to :laborer
+  belongs_to :submittable, polymorphic: true
 end

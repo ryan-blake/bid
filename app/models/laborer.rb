@@ -5,7 +5,6 @@
 #  id                     :integer          not null, primary key
 #  name                   :string
 #  about                  :string
-#  laborer_id             :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -33,6 +32,7 @@ class Laborer < ActiveRecord::Base
 
 
   def init
-      self.role  ||= "standard"          #will set the default value only if it's nil
-    end
+    self.role  ||= "standard"          #will set the default value only if it's nil
+  end
+  
 end

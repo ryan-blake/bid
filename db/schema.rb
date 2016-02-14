@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210220455) do
+ActiveRecord::Schema.define(version: 20160209225458) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20160210220455) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
-    t.integer  "client_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
@@ -43,13 +42,11 @@ ActiveRecord::Schema.define(version: 20160210220455) do
   create_table "jobs", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.integer  "job_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "laborer_id"
     t.integer  "client_id"
     t.integer  "category_id"
-    t.integer  "price"
   end
 
   add_index "jobs", ["category_id"], name: "index_jobs_on_category_id"
@@ -59,7 +56,6 @@ ActiveRecord::Schema.define(version: 20160210220455) do
   create_table "laborers", force: :cascade do |t|
     t.string   "name"
     t.string   "about"
-    t.integer  "laborer_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
@@ -73,33 +69,20 @@ ActiveRecord::Schema.define(version: 20160210220455) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "role"
-    t.integer  "job_id"
   end
 
   add_index "laborers", ["email"], name: "index_laborers_on_email", unique: true
-  add_index "laborers", ["job_id"], name: "index_laborers_on_job_id"
   add_index "laborers", ["reset_password_token"], name: "index_laborers_on_reset_password_token", unique: true
 
-  create_table "submits", force: :cascade do |t|
+  create_table "submissions", force: :cascade do |t|
     t.integer  "job_id"
-    t.integer  "laborer_id_id"
+    t.integer  "laborer_id"
     t.integer  "price"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "submits", ["job_id"], name: "index_submits_on_job_id"
-  add_index "submits", ["laborer_id_id"], name: "index_submits_on_laborer_id_id"
-
-  create_table "submittings", force: :cascade do |t|
-    t.integer  "submit_id"
-    t.integer  "submittable_id"
-    t.string   "submittable_type"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "submittings", ["submit_id"], name: "index_submittings_on_submit_id"
-  add_index "submittings", ["submittable_type", "submittable_id"], name: "index_submittings_on_submittable_type_and_submittable_id"
+  add_index "submissions", ["job_id"], name: "index_submissions_on_job_id"
+  add_index "submissions", ["laborer_id"], name: "index_submissions_on_laborer_id"
 
 end

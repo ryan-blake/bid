@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   devise_for :laborers
   resources :clients
   resources :laborers
-  resources :jobs
+  resources :jobs do
+    resources :submissions
+  end
   resources :welcomes
-  resources :submits
+  # resources :submits
 
   root 'jobs#index'
 end

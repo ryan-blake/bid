@@ -6,12 +6,11 @@ class ClientsController < ApplicationController
   def index
     @clients = Client.all
   end
-
   # GET /clients/1
   # GET /clients/1.json
   def show
-  @client = current_client
-
+    @job = Job.find(params[:id])
+    @client = Client.find(params[:id])
   end
 
   # GET /clients/new
