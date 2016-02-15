@@ -27,5 +27,7 @@
 
 
 <br>
-
-<%= link_to 'New Job', new_job_path %>
+  <% if current_client %>
+    <%= link_to 'New Job', new_job_path %>
+  <% end %>
+</br>

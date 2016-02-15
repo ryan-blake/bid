@@ -58,3 +58,4 @@ gem 'faker'
 #twitter bootstrap
 gem 'bootstrap-sass'
 gem 'pundit'
+gem 'mailboxer'

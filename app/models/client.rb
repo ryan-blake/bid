@@ -23,13 +23,23 @@ class Client < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  :recoverable, :rememberable, :trackable, :validatable
   has_many :jobs
   has_many :laborers, through: :jobs
   enum role: [:standard, :premium, :admin]
 
 
   def init
-      self.role  ||= "standard"          #will set the default value only if it's nil
-    end
+    self.role  ||= "standard"          #will set the default value only if it's nil
+  end
+
+  acts_as_messageable
+
+  def mailboxer_name
+    self.name
+  end
+
+  def mailboxer_email(object)
+    self.email
+  end
 end

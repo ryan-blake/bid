@@ -9,7 +9,7 @@ c.password = "testtest"
 c.save!
 
 l = Laborer.find_or_initialize_by(
-  email: 'richardrpanzer@gmail.com',
+  email: 'r@gmail.com',
   name: 'Ricky Panzer',
   role: 2
 )
@@ -65,7 +65,9 @@ categories = Category.all
   description:    Faker::Hipster.paragraph,
   client: clients.sample,
   category: categories.sample,
-  laborer: laborers.sample
+  laborer: laborers.sample,
+
+
 
   # created_at: "2015-12-10 20:24:01"
   )
@@ -85,7 +87,7 @@ jobs = Job.all
 
 10.times do
   Submission.create!(
-    price: 2..12,
+    price: "2..12",
     laborer: laborers.sample,
     job: jobs.sample
 

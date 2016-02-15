@@ -19,17 +19,19 @@
     <b>$<%= w.price %>.00</b>
     from:<%= w.laborer.name %>.
     <% end %>
+
+    <%= link_to "show_job_client", client_path %>
+
   </ul>
 </br>
-<p>
-  <%= link_to "show_index_of_users", clients_path %>
-
-</p>
 </div>
 <div>
   <% if policy(@job).edit? %>
   <%= link_to "edit", edit_job_path(@job), class: "btn btn-primary" %>
   <%= link_to "Delete", @job , :method => :delete %>
+  <p>
+
+  </p>
 
   <% end %>
 </div>
@@ -46,7 +48,7 @@
 <% end %>
 <% end %>
 <br>
-create radio button loop
+create radio button loop, proper Job.submissions.laborers
 </br>
 <% if current_client %>
 <% @prices.each do |w| %>

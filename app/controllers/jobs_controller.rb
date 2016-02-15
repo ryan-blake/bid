@@ -1,12 +1,13 @@
 class JobsController < ApplicationController
   include Pundit
 
-  before_action :set_job, only: [:index, :show, :edit, :update, :destroy]
 
+  before_action :set_job, only: [:index, :show, :edit, :update, :destroy]
   # GET /jobs
   # GET /jobs.json
   def index
     # @jobs = policy_scope(Job)
+
     @jobs = Job.all
 
     if Laborer.present?
@@ -19,9 +20,9 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.json
   def show
-    @job = Job.find(params[:id])
-    @laborer = @job.laborer
 
+    @job = Job.find(params[:id])
+    @laborer = @job.laborer_id
     @submission = Submission.new
     @price = @job.submissions
     @prices = @price.all
@@ -46,7 +47,8 @@ class JobsController < ApplicationController
 
   # GET /jobs/new
   def new
-    @job = Job.new
+    @job = Job.new(params[:job_params])
+
   end
 
   # GET /jobs/1/edit
@@ -82,7 +84,6 @@ def create
   @job = Job.new(job_params)
   @job.client = current_client
 
-
   respond_to do |format|
     if @job.save
       format.html { redirect_to root_url, notice: 'Job was successfully created.' }
@@ -115,6 +116,6 @@ end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def job_params
-    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price)
+    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price, :current_client)
   end
 end
