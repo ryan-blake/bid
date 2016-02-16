@@ -1,11 +1,13 @@
 class JobsController < ApplicationController
   include Pundit
 
-
   before_action :set_job, only: [:index, :show, :edit, :update, :destroy]
+  before_action :authenticate_client! || :authenticate_laborer!
+
   # GET /jobs
   # GET /jobs.json
   def index
+
     # @jobs = policy_scope(Job)
 
     @jobs = Job.all
