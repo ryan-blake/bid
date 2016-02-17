@@ -20,6 +20,7 @@
       <%= link_to "Sign Out", destroy_laborer_session_path, method: :delete %>
       <li><%= link_to "Inbox", mailbox_inbox_path %></li>
 
+
      <%else%>
       <%= link_to "User,", new_client_session_path %>
       <%= link_to "Business", new_laborer_session_path %>: <b> log in</b>
