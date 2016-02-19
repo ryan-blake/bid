@@ -19,8 +19,8 @@
         <small>
           <td><%= link_to 'Show', client %></td>
           <% if client == pundit_user %>
-          <td><%= link_to 'Edit', edit_client_registration_path %></td>
-          <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Edit', edit_client_registration_path %></td>
+            <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         </small>
       </div>

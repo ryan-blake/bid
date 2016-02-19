@@ -14,4 +14,8 @@ class Submission < ActiveRecord::Base
   belongs_to :job
   belongs_to :laborer
   belongs_to :submittable, polymorphic: true
+
+  def pretty_print
+    " $#{price}.00 by #{laborer.name}\n"
+  end
 end

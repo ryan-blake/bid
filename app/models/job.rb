@@ -2,14 +2,15 @@
 #
 # Table name: jobs
 #
-#  id          :integer          not null, primary key
-#  title       :string
-#  description :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  laborer_id  :integer
-#  client_id   :integer
-#  category_id :integer
+#  id                     :integer          not null, primary key
+#  title                  :string
+#  description            :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  laborer_id             :integer
+#  client_id              :integer
+#  category_id            :integer
+#  selected_submission_id :integer
 #
 
 class Job < ActiveRecord::Base
@@ -18,6 +19,7 @@ class Job < ActiveRecord::Base
   belongs_to :category
   has_many :submissions
   # accepts_nested_attributes_for :submits
+  belongs_to :selected_submission, class_name: "Submission"
 
   default_scope { order('created_at DESC') }
 

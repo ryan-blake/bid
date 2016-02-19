@@ -10,8 +10,8 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
-    @job = Job.find(params[:id])
-    @client = @job.client
+    @client = Client.find(params[:id])
+    
   end
 
   # GET /clients/new

@@ -9,19 +9,28 @@
     <%= @job.description %>
     <small>
       <br>
-      submitted <%= time_ago_in_words(@job.created_at) %> ago by <%= link_to @job.client.name, client_path %>
+      submitted <%= time_ago_in_words(@job.created_at) %> ago by <%= link_to @job.client.name, client_path(@job.client) %>
     </br>
     </small>
   </h4>
 </div>
 <div>
   <br>
-
+  <% if @client == pundit_user %>
   <ul>
-    <% @prices.each do |w| %>
-    <b>$<%= w.price %>.00</b>
-    from:<%= w.laborer.name %>.
+    <%= form_for @job do |f| %>
+      <%= f.collection_radio_buttons(:selected_submission_id, @submissions, :id, :pretty_print) do |b| %>
+        <%= b.label(class: "radio_button", "data-value": b.value ) { b.radio_button(class: "radio_button") + b.text } %>
+        <br/>
+      <% end %>
+      <%= f.submit %>
     <% end %>
+  <%else %>
+    <br/>
+    <% @submissions.each do |w| %>
+      <b>$<%= w.price %>.00</b>.
+   <% end %>
+  <% end %>
 
 
   </ul>
@@ -29,33 +38,24 @@
 </div>
 <div>
   <% if @client == pundit_user %>
-  <% if policy(@job).edit? %>
-  <%= link_to "edit", edit_job_path(@job), class: "btn btn-primary" %>
-  <%= link_to "Delete", @job , :method => :delete %>
-  <p>
+    <% if policy(@job).edit? %>
+      <%= link_to "edit", edit_job_path(@job), class: "btn btn-primary" %>
+      <%= link_to "Delete", @job , :method => :delete %>
+      <p>
 
-  </p>
- <% end %>
+      </p>
+    <% end %>
   <% end %>
 </div>
 
 <% if current_laborer %>
-<%= form_for([@job, @submission]) do |s| %>
+  <%= form_for([@job, @submission]) do |s| %>
 
-<div class="form-group">
-  <%= s.label :price %>
-  <%= s.number_field :price %>
-</div>
+    <div class="form-group">
+      <%= s.label :price %>
+      <%= s.number_field :price %>
+    </div>
 
-<%= s.submit %>
-<% end %>
-<% end %>
-<br>
-create radio button loop, proper Job.submissions.laborers
-</br>
-<% if current_client %>
-<% @prices.each do |w| %>
-<b>($<%= w.price %>.00)</b>
-from:<%= w.laborer.name %>
-<% end %>
+    <%= s.submit %>
+  <% end %>
 <% end %>

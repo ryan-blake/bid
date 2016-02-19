@@ -30,8 +30,8 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @laborer = @job.laborer_id
     @submission = Submission.new
-    @price = @job.submissions
-    @prices = @price.all
+    @submissions = @job.submissions
+    # @prices = @price.all
     @client = @job.client
 
   end
@@ -128,6 +128,6 @@ end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def job_params
-    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price, :current_client)
+    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price, :current_client, :selected_submission_id)
   end
 end
