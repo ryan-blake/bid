@@ -14,10 +14,7 @@
         </small>
         <small>
           <td><%= link_to 'Show', job %></td>
-          <% if current_client %>
-          <td><%= link_to 'Edit', edit_job_path(job) %></td>
-          <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
+        
         </small>
       </div>
     </div>

@@ -1,5 +1,26 @@
 <div class="row">
  <div class="col-md-8">
+   <h1><%= @laborer.name %></h1>
+   <div class="media">
+     <div class="media-body">
+       <h4 class="media-heading">
+         About: <%= @laborer.about %>
+       </h4>
+       <small>
+        contact: <%= @laborer.email %>
+       </small>
+       <br>
+       Rating:
+       <br>
+       ask a question:
+     </br>
+     </div>
+   </div>
+ </div>
+<% if @laborer == pundit_user %>
+<h3> Current Bids </h4>
+<div class="row">
+ <div class="col-md-8">
    <% @jobs.each do |job| %>
    <div class="media">
      <div class="media-body">
@@ -13,7 +34,7 @@
    </div>
    <% end %>
  </div>
-
+<%end%>
 
 <p id="notice"><%= notice %></p>
 

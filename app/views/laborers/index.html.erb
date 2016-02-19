@@ -2,24 +2,26 @@
 
 <h1>Listing Laborers</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="row">
+  <div class="col-md-8">
     <% @laborers.each do |laborer| %>
-      <tr>
-        <td><%= link_to 'Show', laborer %></td>
-        <td><%= link_to 'Edit', edit_laborer_path(laborer) %></td>
-        <td><%= link_to 'Destroy', laborer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= link_to laborer.name, laborer  %>
+        </h4>
+        <small>
+          <%= laborer.email %>
+        </small>
+        <small>
+          <td><%= link_to 'Show', laborer %></td>
+          <% if laborer == pundit_user %>
+          <td><%= link_to 'Edit', edit_laborer_registration_path %></td>
+          <td><%= link_to 'Destroy', laborer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </small>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Laborer', new_laborer_path %>
+  </div>
+  <body>

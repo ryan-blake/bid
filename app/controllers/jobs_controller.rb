@@ -12,6 +12,10 @@ class JobsController < ApplicationController
 
     @jobs = Job.all
 
+    @job = Job.find_by(params[:id])
+    @client = @job.client
+
+
     if Laborer.present?
       def show_bid_form
         render :partial=>"submit/form"
@@ -28,6 +32,7 @@ class JobsController < ApplicationController
     @submission = Submission.new
     @price = @job.submissions
     @prices = @price.all
+    @client = @job.client
 
   end
 
@@ -50,6 +55,7 @@ class JobsController < ApplicationController
   # GET /jobs/new
   def new
     @job = Job.new(params[:job_params])
+    @client = pundit_user
 
   end
 

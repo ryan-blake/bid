@@ -11,6 +11,7 @@ c.save!
 l = Laborer.find_or_initialize_by(
   email: 'r@gmail.com',
   name: 'Ricky Panzer',
+  about: Faker::Lorem.sentence,
   role: 2
 )
 
@@ -38,6 +39,7 @@ clients = Client.all
   email:   Faker::Internet.email,
   name:     Faker::Name.name,
   password: "testtest",
+  about:    Faker::Lorem.sentence,
   role: 1
   )
   # laborer.skip_confirmation!
