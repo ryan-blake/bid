@@ -3,6 +3,12 @@
 <p id="notice"><%= notice %></p>
 <h1> <%= @client.name %> </h1>
 <p> <%= @client.email %></p>
-
-<%= link_to 'Edit', edit_client_path(@client) %> |
+<%= link_to 'Edit', edit_client_registration_path(@client) %> |
 <%= link_to 'Back', clients_path %>
+
+<H3> OPEN-JOBS </H3>
+ <% j = @client.jobs.all %>
+<% j.each do |t| %>
+
+  <%= link_to t.title.capitalize, t %>.
+  <% end %>

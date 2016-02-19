@@ -8,19 +8,21 @@
   <h4>
     <%= @job.description %>
     <small>
-      submitted <%= time_ago_in_words(@job.created_at) %> ago by <%= @job.client.name %>
+      <br>
+      submitted <%= time_ago_in_words(@job.created_at) %> ago by <%= link_to @job.client.name, client_path %>
+    </br>
     </small>
   </h4>
 </div>
 <div>
   <br>
+
   <ul>
     <% @prices.each do |w| %>
     <b>$<%= w.price %>.00</b>
     from:<%= w.laborer.name %>.
     <% end %>
 
-    <%= link_to "show_job_client", client_path %>
 
   </ul>
 </br>

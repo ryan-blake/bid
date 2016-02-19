@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   include Pundit
 
   before_action :set_job, only: [:index, :show, :edit, :update, :destroy]
-  before_action :authenticate_client! || :authenticate_laborer!
+  before_filter :login_required, unless: :pundit_user
 
   # GET /jobs
   # GET /jobs.json
@@ -115,6 +115,10 @@ end
     # @job = Job.find(params[:id])
   end
 
+
+  def login_required
+    redirect_to client_session_path, notice: 'Please login'
+  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def job_params

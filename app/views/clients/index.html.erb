@@ -2,31 +2,29 @@
 
 <h1>Listing Clients</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-      <ul>
-        <% @clients.each do |client| %>
-<li><%= link_to client.name, client %>
-<%= client.email %>
-<% end %>
-</li>
-</ul>
-    </tr>
-  </thead>
 
-  <tbody>
+
+-------------
+<div class="row">
+  <div class="col-md-8">
     <% @clients.each do |client| %>
-      <tr>
-        <td><%= link_to 'Show', client %></td>
-        <td><%= link_to 'Edit', edit_client_path(client) %></td>
-        <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= link_to client.name, client  %>
+        </h4>
+        <small>
+          <%= client.email %>
+        </small>
+        <small>
+          <td><%= link_to 'Show', client %></td>
+          <% if client == pundit_user %>
+          <td><%= link_to 'Edit', edit_client_registration_path %></td>
+          <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </small>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Client', new_client_registration_path %>
+  </div>
+  <body>
