@@ -24,6 +24,7 @@ class Client < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
+  ratyrate_rater
   has_many :jobs
   has_many :laborers, through: :jobs
   enum role: [:standard, :premium, :admin]

@@ -25,6 +25,8 @@ class Laborer < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  ratyrate_rateable "professionalism"
+
   has_many :jobs
   has_many :clients, through: :jobs
   enum role: [:standard, :premium, :admin]

@@ -40,3 +40,18 @@
 
 <%= link_to 'Edit', edit_laborer_path(@laborer) %> |
 <%= link_to 'Back', laborers_path %>
+
+<div class="row">
+  <div class="small-2 large-2 columns">
+    <%= imdb_style_rating_for @laborer, pundit_user%>
+  </div>
+  <br>
+  <div class="small-2 large-4 columns">
+    <% raise %>
+    <% if pundit_user %>
+      professionalism: <%= rating_for @laborer, "professionalism" %>
+      <br>
+
+    <% end %>
+  </div>
+</div>
