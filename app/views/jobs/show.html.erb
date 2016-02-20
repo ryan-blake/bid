@@ -16,7 +16,7 @@
 </div>
 <div>
   <br>
-  <% if @client == pundit_user %>
+  <% if @client == pundit_user  && @submissions == true %>
   <ul>
     <%= form_for @job do |f| %>
       <%= f.collection_radio_buttons(:selected_submission_id, @submissions, :id, :pretty_print) do |b| %>

@@ -47,4 +47,8 @@ def mailboxer_email(object)
   self.email
 end
 
+def current_user
+  current_client || pundit_user
+end
+
 end

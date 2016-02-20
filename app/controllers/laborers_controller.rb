@@ -23,6 +23,7 @@ class LaborersController < ApplicationController
 
   # GET /laborers/1/edit
   def edit
+    @laborer = Laborer.find(params[:id])
   end
 
   # POST /laborers
@@ -78,4 +79,5 @@ class LaborersController < ApplicationController
     def laborer_params
       params.require(:laborer).permit(:name, :about, :email)
     end
+
 end

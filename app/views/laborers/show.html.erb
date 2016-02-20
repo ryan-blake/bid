@@ -47,9 +47,10 @@
   </div>
   <br>
   <div class="small-2 large-4 columns">
-    <% raise %>
     <% if pundit_user %>
-      professionalism: <%= rating_for @laborer, "professionalism" %>
+      professionalism: <%= rating_for @laborer, "professionalism", enable_half: true, cancel_hint: 'Cancel this vote!' %>
+
+
       <br>
 
     <% end %>

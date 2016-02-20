@@ -17,6 +17,12 @@ class ApplicationController < ActionController::Base
     current_client || current_laborer
   end
 
+  def current_user
+    pundit_user
+  end
+
+  helper_method :current_user
+
   private
 
   def mailbox
