@@ -1,17 +1,28 @@
-<%= form_for(@laborer) do |f| %>
-  <% if @laborer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@laborer.errors.count, "error") %> prohibited this laborer from being saved:</h2>
 
-      <ul>
-      <% @laborer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+ <%= form_for([@laborer, @laborer.reviews.build]) do |f| %>
+  <div class="field">
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %><br/>
+</div>
+<div class="field">
+  <%= f.label :author %><br />
+  <%= f.text_field :author %>
+</div>
+<div class="field">
+  <%= f.label :content %><br />
+  <%= f.text_area :content %>
+</div>
+<div class="field">
+  <%= f.label :rating %><br />
+  <%= f.select( :rating, options_for_select(1..5) )%>
+</div>
+
+
+<div class="actions">
+  <%= f.submit "submit" %>
+</div>
+
 <% end %>
