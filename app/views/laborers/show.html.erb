@@ -44,15 +44,37 @@
 <div class="row">
   <div class="small-2 large-2 columns">
     <%= imdb_style_rating_for @laborer, pundit_user%>
+ <%= @laborer.average("professionalism").nil? ? '0' : @laborer.average("professionalism").avg %>
+
+
+
   </div>
   <br>
   <div class="small-2 large-4 columns">
-    <% if pundit_user %>
-      professionalism: <%= rating_for @laborer, "professionalism", enable_half: true, cancel_hint: 'Cancel this vote!' %>
+    <% if current_client %>
+    professionalism  <%= rating_for @laborer, "professionalism", imdb_avg: true, disable_after_rate: true %>
 
 
       <br>
 
     <% end %>
+
   </div>
+</div>
+<div class="row">
+  <div class="small-2 large-2 columns">
+    <%= imdb_style_rating_for @laborer, current_client%>
+  </div>
+  <br>
+  <div class="small-2 large-4 columns">
+    <% if current_client %>
+      V: <%= rating_for @laborer, "professionalism", disable_after_rate: true, imdb_avg: true %>
+      <br>
+      Visual Effects: <%= rating_for_user @laborer, current_client, "professionalism" %>
+
+    <% end %>
+  </div>
+  <div id="rea"></div>
+  <div id="nrea"></div>
+</div>
 </div>
