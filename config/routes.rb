@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   devise_for :laborers
 
   resources :clients
-  resources :laborers
+
+  resources :laborers do
+    resources :reviews
+  end
 
   resources :jobs do
     resources :submissions
@@ -25,6 +28,6 @@ Rails.application.routes.draw do
     end
   end
 
-  
+
   root 'jobs#index'
 end

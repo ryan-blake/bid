@@ -36,6 +36,21 @@
  </div>
 <%end%>
 
+<div class="row">
+  <div class="col-md-8">
+    <% @laborer.reviews.each do |review| %>
+    <p> <%= review.title %> </p> <br/>
+    <%= review.author %><br/>
+    <%= review.content %> <br/>
+    <%= review.rating %>
+    <% end %>
+
+  </div>
+</div>
+
+
+
+
 <p id="notice"><%= notice %></p>
 
 <%= link_to 'Edit', edit_laborer_path(@laborer) %> |

@@ -10,7 +10,7 @@ c.save!
 
 l = Laborer.find_or_initialize_by(
   email: 'r@gmail.com',
-  name: 'Ricky Panzer',
+  name: 'R P',
   about: Faker::Lorem.sentence,
   role: 2
 )
@@ -59,6 +59,16 @@ end
 
 categories = Category.all
 
+10.times do
+  Review.create!(
+   title:   Faker::Hipster.word,
+   author:  Faker::Name.name,
+   content: Faker::Hipster.paragraph,
+   rating:  3,
+   laborer: laborers.sample
+  )
+end
+  reviews = Review.all
 
 # Creates jobs
 20.times do
@@ -104,3 +114,4 @@ puts "#{Client.count}  clients created"
 puts "#{Laborer.count}  laborers created"
 puts "#{Submission.count} submits created"
 puts "#{Job.count}  jobs created"
+puts "#{Review.count} reviews created"
