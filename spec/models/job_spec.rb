@@ -11,6 +11,7 @@
 #  client_id              :integer
 #  category_id            :integer
 #  selected_submission_id :integer
+#  time                   :integer
 #
 
 require 'rails_helper'

@@ -11,6 +11,7 @@
 #  client_id              :integer
 #  category_id            :integer
 #  selected_submission_id :integer
+#  time                   :integer
 #
 
 class Job < ActiveRecord::Base
@@ -23,4 +24,18 @@ class Job < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
 
+  def expire_date
+   a = created_at+time.days
+   b = a.day
+   b
+  end
+  def create_date
+    a = created_at
+     b = a.day
+     b
+   end
+   def time_day
+     c = time
+     c
+   end
 end

@@ -51,6 +51,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
 #sign up
 gem 'devise'
 #seed data
@@ -59,3 +60,4 @@ gem 'faker'
 gem 'bootstrap-sass'
 gem 'pundit'
 gem 'mailboxer'
+gem 'whenever', :require => false

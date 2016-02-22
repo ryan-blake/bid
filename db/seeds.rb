@@ -78,10 +78,8 @@ end
   client: clients.sample,
   category: categories.sample,
   laborer: laborers.sample,
-
-
-
-  # created_at: "2015-12-10 20:24:01"
+  time: 7,
+  created_at: "2015-2-15 12:04:01"
   )
 end
 
