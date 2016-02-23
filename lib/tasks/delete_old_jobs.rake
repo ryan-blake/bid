@@ -1,8 +1,10 @@
 namespace :delete do
   desc 'Delete old jobs'
   task :old_jobs => :environment do
+    jobs = Job.all
 
-    jobs = Job.where('created_at + time*3600*24 < ?', Time.now)
+    jobs = jobs.reject{|x| x.created_at + x.time*3600*24 >= Time.now}
+    # jobs = Job.where('created_at + time*3600*24 < ?', Time.now)
     # jobs = Job.where(':expire_date - :create_date >= ?', :time)
     # puts jobs
     puts jobs.count

@@ -11,16 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223180754) do
-
-  create_table "average_caches", force: :cascade do |t|
-    t.integer  "rater_id"
-    t.integer  "rateable_id"
-    t.string   "rateable_type"
-    t.float    "avg",           null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20160223215858) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -58,7 +49,6 @@ ActiveRecord::Schema.define(version: 20160223180754) do
     t.integer  "category_id"
     t.integer  "selected_submission_id"
     t.integer  "time"
-    t.integer  "zip"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address1"
@@ -89,7 +79,6 @@ ActiveRecord::Schema.define(version: 20160223180754) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "role"
-    t.integer  "zip"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address1"
@@ -115,7 +104,10 @@ ActiveRecord::Schema.define(version: 20160223180754) do
     t.string   "subject",    default: ""
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "job_id"
   end
+
+  add_index "mailboxer_conversations", ["job_id"], name: "index_mailboxer_conversations_on_job_id"
 
   create_table "mailboxer_notifications", force: :cascade do |t|
     t.string   "type"
@@ -154,39 +146,6 @@ ActiveRecord::Schema.define(version: 20160223180754) do
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
-
-  create_table "overall_averages", force: :cascade do |t|
-    t.integer  "rateable_id"
-    t.string   "rateable_type"
-    t.float    "overall_avg",   null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "rates", force: :cascade do |t|
-    t.integer  "rater_id"
-    t.integer  "rateable_id"
-    t.string   "rateable_type"
-    t.float    "stars",         null: false
-    t.string   "dimension"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type"
-  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id"
-
-  create_table "rating_caches", force: :cascade do |t|
-    t.integer  "cacheable_id"
-    t.string   "cacheable_type"
-    t.float    "avg",            null: false
-    t.integer  "qty",            null: false
-    t.string   "dimension"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
 
   create_table "reviews", force: :cascade do |t|
     t.string   "title"

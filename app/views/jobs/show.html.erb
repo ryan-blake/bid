@@ -16,25 +16,37 @@
   </h4>
 </div>
 
-<b> don't click unless radio button present </b>
+
 <div>
   <br>
-  <% if @client == pundit_user  %>
-    <ul>
-    <%= form_for @job do |f| %>
-      <%= f.collection_radio_buttons(:selected_submission_id, @submissions, :id, :pretty_print) do |b| %>
-        <%= b.label(class: "radio_button", "data-value": b.value ) { b.radio_button(class: "radio_button") + b.text } %>
-        <br/>
+  <% if @client == pundit_user %>
+    <% if @submissions.count > 0 %>
+      <% if @job.selected_submission %>
+        <p>
+          Selected Submission: <%= @job.selected_submission.pretty_print %>.
+          <%= link_to "Talk With #{@job.selected_submission.laborer.name}",
+            new_conversation_path(job_id: @job.id) %>
+        <p>
+      <% else %>
+        <%= form_for @job do |f| %>
+          <%= f.collection_radio_buttons(:selected_submission_id, @submissions, :id, :pretty_print) do |b| %>
+            <%= b.label(class: "radio_button", "data-value": b.value ) { b.radio_button(class: "radio_button") + b.text } %>
+            <br/>
+          <% end %>
+          <%= f.submit 'Select Bid' %>
+        <%end%>
+      <%end%>
+    <% else %>
+      <b>There are no bids yet.</b>
     <% end %>
-      <%= f.submit %>
-  <%end%>
-    <%else %>
+  <%else %>
     <br/>
+    <ul>
      <% @submissions.each do |w| %>
       <b>$<%= w.price %>.00</b>.
      <% end %>
+     </ul>
   <% end %>
-   </ul>
  </br>
 </div>
 

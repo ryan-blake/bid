@@ -15,9 +15,9 @@ class JobsController < ApplicationController
 
     laborer_longitude = -118.487545
 
-    @jobs = Job.near([laborer_latitude, laborer_longitude], 30)
+    # @jobs = Job.near([laborer_latitude, laborer_longitude], 30)
 
-    # @jobs = Job.all
+    @jobs = Job.all
 
     @job = Job.find_by(params[:id])
     @client = @job.client
@@ -46,6 +46,11 @@ class JobsController < ApplicationController
   def update
 
     @job = Job.find(params[:id])
+    if !params[:job]
+      flash[:error] = "You didn't select a bid!"
+      redirect_to [@job]
+      return
+    end
     @job.assign_attributes(job_params)
 
     if @job.save
