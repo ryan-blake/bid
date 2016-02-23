@@ -11,10 +11,10 @@ c.save!
 l = Laborer.find_or_initialize_by(
   email: 'r@gmail.com',
   name: 'R P',
-  about: Faker::Lorem.sentence,
   role: 2
 )
 
+l.about= Faker::Lorem.sentence
 l.password = "testtest"
 l.save!
 
@@ -79,7 +79,7 @@ end
   category: categories.sample,
   laborer: laborers.sample,
   time: 7,
-  created_at: "2015-2-15 12:04:01"
+  # created_at: "2015-2-15 12:04:01"
   )
 end
 
