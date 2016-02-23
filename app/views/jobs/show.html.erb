@@ -1,5 +1,4 @@
 
-
 <div>
   <h1>
     <%= @job.title %>
@@ -16,28 +15,30 @@
     </small>
   </h4>
 </div>
+
+<b> don't click unless radio button present </b>
 <div>
   <br>
-  <% if @client == pundit_user %>
-  <ul>
+  <% if @client == pundit_user  %>
+    <ul>
     <%= form_for @job do |f| %>
       <%= f.collection_radio_buttons(:selected_submission_id, @submissions, :id, :pretty_print) do |b| %>
         <%= b.label(class: "radio_button", "data-value": b.value ) { b.radio_button(class: "radio_button") + b.text } %>
         <br/>
-      <% end %>
-      <%= f.submit %>
     <% end %>
-  <%else %>
+      <%= f.submit %>
+  <%end%>
+    <%else %>
     <br/>
-    <% @submissions.each do |w| %>
+     <% @submissions.each do |w| %>
       <b>$<%= w.price %>.00</b>.
-   <% end %>
+     <% end %>
   <% end %>
-
-
-  </ul>
-</br>
+   </ul>
+ </br>
 </div>
+
+
 <div>
   <% if @client == pundit_user %>
     <% if policy(@job).edit? %>

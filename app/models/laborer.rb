@@ -19,6 +19,13 @@
 #  last_sign_in_ip        :string
 #  role                   :integer
 #  zip                    :integer
+#  latitude               :float
+#  longitude              :float
+#  address1               :string
+#  address2               :string
+#  city                   :string
+#  state                  :string
+#  zipcode                :integer
 #
 
 class Laborer < ActiveRecord::Base
@@ -31,6 +38,13 @@ class Laborer < ActiveRecord::Base
   enum role: [:standard, :premium, :admin]
   has_many :submits, :as => :submittable
   has_many :reviews
+
+  geocoded_by :full_address
+  after_validation :geocode
+
+  def full_address
+    [address1, address2, city, state, zipcode].join(', ')
+  end
 
 
   def init

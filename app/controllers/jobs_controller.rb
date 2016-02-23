@@ -8,9 +8,16 @@ class JobsController < ApplicationController
   # GET /jobs.json
   def index
 
-    # @jobs = policy_scope(Job)
+    ## @jobs = policy_scope(Job)
+    ##laborer_longitude = request.location.longitude
+    ##laborer_latitude = request.location.latitude //can't do on local server
+    laborer_latitude = 34.029043
 
-    @jobs = Job.all
+    laborer_longitude = -118.487545
+
+    @jobs = Job.near([laborer_latitude, laborer_longitude], 30)
+
+    # @jobs = Job.all
 
     @job = Job.find_by(params[:id])
     @client = @job.client
@@ -130,6 +137,6 @@ end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def job_params
-    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price, :current_client, :selected_submission_id)
+    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price, :current_client, :selected_submission_id, :address1, :address2, :city, :state, :zipcode)
   end
 end

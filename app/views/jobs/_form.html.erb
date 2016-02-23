@@ -27,8 +27,32 @@
     <%= f.label :category %>
     <%= f.collection_select :category_id, Category.all, :id, :name, class: 'form-control' %>
   </div>
-<br>
 
+  <div class="field">
+    <%= f.label :address1 %><br/>
+    <%= f.text_field :address1 %><br/>
+ </div>
+ <div class="field">
+   <%= f.label :address2 %><br/>
+   <%= f.text_field :address2 %><br/>
+ </div>
+
+ <div class="field">
+  <%= f.label :city %><br />
+  <%= f.text_field :city %>
+ </div>
+ <div class="field">
+  <%= f.label :state %><br />
+  <%= f.text_field :state %>
+ </div>
+ <div class="field">
+  <%= f.label :zipcode %><br />
+  <%= f.number_field :zipcode %>
+ </div>
+
+
+
+<br>
 
 </br>
 

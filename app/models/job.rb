@@ -13,6 +13,13 @@
 #  selected_submission_id :integer
 #  time                   :integer
 #  zip                    :integer
+#  latitude               :float
+#  longitude              :float
+#  address1               :string
+#  address2               :string
+#  city                   :string
+#  state                  :string
+#  zipcode                :integer
 #
 
 class Job < ActiveRecord::Base
@@ -25,6 +32,13 @@ class Job < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
 
+  geocoded_by :full_address
+  after_validation :geocode
+
+  def full_address
+    [address1, address2, city, state, zipcode].join(', ')
+  end
+  
   def expire_date
    a = created_at+time.days
    b = a.day

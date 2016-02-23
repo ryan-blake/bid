@@ -63,3 +63,4 @@ gem 'mailboxer'
 gem 'whenever', :require => false
 gem 'figaro'
 gem 'stripe'
+gem 'geocoder'

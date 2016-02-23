@@ -13,6 +13,13 @@
 #  selected_submission_id :integer
 #  time                   :integer
 #  zip                    :integer
+#  latitude               :float
+#  longitude              :float
+#  address1               :string
+#  address2               :string
+#  city                   :string
+#  state                  :string
+#  zipcode                :integer
 #
 
 require 'rails_helper'
