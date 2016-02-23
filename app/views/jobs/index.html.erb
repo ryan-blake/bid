@@ -14,13 +14,17 @@
         </small>
         <small>
           <td><%= link_to 'Show', job %></td>
-        
+
         </small>
       </div>
     </div>
     <% end %>
   </div>
   <body>
+<% if current_laborer %>
+
+<%= link_to "Premium Account", new_charge_path, class: 'btn btn-success' %>
+<% end %>
 
 
 <br>

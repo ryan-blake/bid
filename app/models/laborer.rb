@@ -18,6 +18,7 @@
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
 #  role                   :integer
+#  zip                    :integer
 #
 
 class Laborer < ActiveRecord::Base

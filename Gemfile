@@ -61,3 +61,5 @@ gem 'bootstrap-sass'
 gem 'pundit'
 gem 'mailboxer'
 gem 'whenever', :require => false
+gem 'figaro'
+gem 'stripe'

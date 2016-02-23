@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220234646) do
+ActiveRecord::Schema.define(version: 20160222225656) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160220234646) do
     t.integer  "category_id"
     t.integer  "selected_submission_id"
     t.integer  "time"
+    t.integer  "zip"
   end
 
   add_index "jobs", ["category_id"], name: "index_jobs_on_category_id"
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20160220234646) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "role"
+    t.integer  "zip"
   end
 
   add_index "laborers", ["email"], name: "index_laborers_on_email", unique: true

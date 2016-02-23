@@ -12,6 +12,7 @@
 #  category_id            :integer
 #  selected_submission_id :integer
 #  time                   :integer
+#  zip                    :integer
 #
 
 require 'rails_helper'

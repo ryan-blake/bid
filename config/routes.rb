@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :charges, only: [:new, :create]
+
   devise_for :clients
   devise_for :laborers
 
