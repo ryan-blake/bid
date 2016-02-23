@@ -1,5 +1,5 @@
 class LaborersController < ApplicationController
-  before_action :set_laborer, only: [:show, :edit, :update, :destroy]
+  before_action :set_laborer, only: [:show, :edit, :update, :destroy, :index]
 
   # GET /laborers
   # GET /laborers.json
@@ -45,6 +45,7 @@ class LaborersController < ApplicationController
   # PATCH/PUT /laborers/1
   # PATCH/PUT /laborers/1.json
   def update
+    @laborer = Laborer.find(params[:id])
     @laborer.assign_attributes(laborer_params)
     respond_to do |format|
       if @laborer.update(laborer_params)
@@ -70,7 +71,7 @@ class LaborersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_laborer
-      @laborer = Laborer.find(params[:id])
+      @laborer = Laborer.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
