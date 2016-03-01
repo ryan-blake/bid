@@ -24,7 +24,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # rspec test
 gem 'rspec-rails'
 #serve assets
-gem 'rails_12factor'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -41,9 +41,14 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'annotate'
+  gem 'rails_12factor'
 
 end
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 
+end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
