@@ -67,3 +67,5 @@ gem 'whenever', :require => false
 gem 'figaro'
 gem 'stripe'
 gem 'geocoder'
+gem 'mail'
+gem 'sendgrid-ruby'

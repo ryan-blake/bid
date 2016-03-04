@@ -35,5 +35,17 @@ module Bid
     config.active_record.raise_in_transactional_callbacks = true
     # r5
     # ActiveSupport.halt_callback_chains_on_return_false = false
-  end
+    ActionMailer::Base.delivery_method = :smtp
+    config.action_mailer.smtp_settings =
+    {
+        :address   => "localhost",
+        :port      => 25,
+        :enable_starttls_auto => true,
+        :username => ENV['SENDGRID_USERNAME'],
+        :password  => ENV['SENDGRID_PASSWORD'],
+        :authentication => 'login',
+        :domain => 'http://myapp.herokuapp.com/',
+        :openssl_verify_mode => 'none'
+    }
+    end
 end

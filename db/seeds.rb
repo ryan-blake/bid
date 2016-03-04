@@ -1,7 +1,7 @@
 
 c = Client.find_or_initialize_by(
-  email: 'richardrpanzer@gmail.com',
-  name: 'Ricky Panzer',
+  email: 'ryan_blake@icloud.com',
+  name: 'Ryan K',
   role: 2
 )
 
@@ -9,8 +9,8 @@ c.password = "testtest"
 c.save!
 
 l = Laborer.find_or_initialize_by(
-  email: 'r@gmail.com',
-  name: 'R P',
+  email: 'ryan_blake@mac.com',
+  name: 'R K',
   role: 2
 )
 
@@ -27,7 +27,7 @@ l.save!
   password: "testtest",
   role: 1
     )
-  # client.skip_confirmation!
+  client.skip_confirmation!
   client.save!
 end
 clients = Client.all
@@ -42,7 +42,7 @@ clients = Client.all
   about:    Faker::Lorem.sentence,
   role: 1
   )
-  # laborer.skip_confirmation!
+  laborer.skip_confirmation!
   laborer.save!
 end
 
