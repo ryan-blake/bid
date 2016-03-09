@@ -6,7 +6,7 @@ if Rails.env.development? || Rails.env.production?
      authentication: :plain,
      user_name:      ENV['SENDGRID_USERNAME'],
      password:       ENV['SENDGRID_PASSWORD'],
-     domain:         'aqueous-wave-39140.heroku.com',
+     domain:         'bidscape.heroku.com',
      enable_starttls_auto: true
    }
  end
