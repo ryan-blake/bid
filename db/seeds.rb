@@ -4,7 +4,6 @@ c = Client.find_or_initialize_by(
   name: 'Ryan K',
   role: 2
 )
-
 c.password = "testtest"
 c.save!
 
@@ -13,7 +12,6 @@ l = Laborer.find_or_initialize_by(
   name: 'R K',
   role: 2
 )
-
 l.about= Faker::Lorem.sentence
 l.password = "testtest"
 l.save!
@@ -45,7 +43,6 @@ clients = Client.all
   laborer.skip_confirmation!
   laborer.save!
 end
-
 laborers = Laborer.all
 
 
