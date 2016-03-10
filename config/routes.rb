@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'jobs#index'
 
   resources :charges, only: [:new, :create]
 
@@ -31,5 +32,4 @@ Rails.application.routes.draw do
   end
 
 
-  root 'jobs#index'
 end
