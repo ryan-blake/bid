@@ -20,8 +20,9 @@ class JobsController < ApplicationController
     @jobs = Job.all
 
     @job = Job.find_by(params[:id])
-    @client = @job.client
-
+    # fix nil:class??
+    # @client = @job.client
+    @client = Client.find(params[:id])
 
     if Laborer.present?
       def show_bid_form
