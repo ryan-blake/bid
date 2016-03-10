@@ -38,6 +38,7 @@ class Laborer < ActiveRecord::Base
   enum role: [:standard, :premium, :admin]
   has_many :submits, :as => :submittable
   has_many :reviews
+  has_one :selected_submission
 
   geocoded_by :full_address
   after_validation :geocode

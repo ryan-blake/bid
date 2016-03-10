@@ -27,6 +27,7 @@ class Job < ActiveRecord::Base
   belongs_to :client
   belongs_to :category
   has_many :submissions
+  has_one :selected_submission
   # accepts_nested_attributes_for :submits
   belongs_to :selected_submission, class_name: "Submission"
 
@@ -38,7 +39,7 @@ class Job < ActiveRecord::Base
   def full_address
     [address1, address2, city, state, zipcode].join(', ')
   end
-  
+
   def expire_date
    a = created_at+time.days
    b = a.day
