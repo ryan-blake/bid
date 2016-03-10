@@ -263,6 +263,5 @@ Devise.setup do |config|
   # so you need to do it manually. For the clients scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/clients/auth'
 
-  config.mailer_sender = ENV["SENDGRID_USERNAME"]
 
 end
