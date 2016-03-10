@@ -17,8 +17,11 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string
 #  role                   :integer
-#  zip                    :integer
 #  latitude               :float
 #  longitude              :float
 #  address1               :string
