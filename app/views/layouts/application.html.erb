@@ -11,7 +11,7 @@
     <li><%= link_to "bid" , root_path %></li>
     <div class="pull-right client-info">
      <% if current_client %>
-      <%= link_to current_client.email, edit_client_registration_path(current_client) %>
+      <%= link_to current_client.email, client_path(current_client) %>
       <%= link_to "Sign Out", destroy_client_session_path, method: :delete %>
       <li><%= link_to "Inbox", mailbox_inbox_path %></li>
 

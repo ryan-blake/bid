@@ -2,9 +2,13 @@
 <div>
   <h1>
     <%= @job.title %>
+    <% if @job.category %>
     <small>
       Category: <%= @job.category.name %>
     </small>
+     <% else %>
+     <p> No Category: </p>
+     <% end %>
   </h1>
   <h4>
     <%= @job.description %>
