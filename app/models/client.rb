@@ -21,6 +21,13 @@
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
 #  role                   :integer
+#  address1               :string
+#  address2               :string
+#  city                   :string
+#  state                  :string
+#  zipcode                :integer
+#  latitude               :float
+#  longitude              :float
 #
 
 class Client < ActiveRecord::Base

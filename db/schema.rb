@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310170521) do
+ActiveRecord::Schema.define(version: 20160312012646) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20160310170521) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.integer  "role"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true
