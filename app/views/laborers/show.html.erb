@@ -41,9 +41,6 @@
             <h4 class="media-heading">
               <%= link_to job.title, job %>
             </h4>
-            <small>
-              <%= job.description %>
-            </small>
           </div>
         </div>
         <% end %>
@@ -75,5 +72,5 @@
 
 
     <p id="notice"><%= notice %></p>
-
-    <%= link_to 'Back', laborer_path %>
+    <%= link_to 'edit', edit_laborer_registration_path(@laborer) %>
+    <%= link_to 'home', root_path %>
