@@ -16,8 +16,12 @@
       <br>
       submitted <%= time_ago_in_words(@job.created_at) %> ago by <%= link_to @job.client.name, client_path(@job.client) %>
     </br>
+    <br>
+    <% if @job.time %>
+     job posting expires in <%= time_ago_in_words(@job.created_at + @job.time.days) %>
     </small>
   </h4>
+  <% end %>
 </div>
 
 

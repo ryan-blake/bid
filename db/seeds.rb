@@ -4,6 +4,7 @@ c = Client.find_or_initialize_by(
   name: 'Ryan K',
   role: 2
 )
+c.skip_confirmation!
 c.password = "testtest"
 c.save!
 
@@ -12,6 +13,7 @@ l = Laborer.find_or_initialize_by(
   name: 'R K',
   role: 2
 )
+l.skip_confirmation!
 l.about= Faker::Lorem.sentence
 l.password = "testtest"
 l.save!

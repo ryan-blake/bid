@@ -3,7 +3,11 @@ class SubmissionsController < ApplicationController
   def new
     @job = Job.find_by(params[:id])
     @laborer = current_laborer
-    @submissions = Job.submissions.new
+    @submissions = Job.submissions.new(:job=>@job)
+  end
+
+  def show
+   @findsubmission = Submission.find(params[:id]).laborer
   end
 
   def create

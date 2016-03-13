@@ -19,6 +19,7 @@
 #  city                   :string
 #  state                  :string
 #  zipcode                :integer
+#  hime                   :integer
 #
 
 require 'rails_helper'
