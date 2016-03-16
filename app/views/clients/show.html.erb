@@ -9,8 +9,16 @@
 <% end %>
 
 <H3> OPEN-JOBS </H3>
- <% j = @client.jobs.all %>
-<% j.each do |t| %>
-
-  <%= link_to t.title.capitalize, t %>.
+<% j = @client.jobs.all %>
+  <% j.each do |t| %>
+    <%= link_to t.title.capitalize, t %>.
   <% end %>
+
+<br>
+<!-- displays chosen jobs -->
+  <h3> Selected Jobs </h3>
+  <% @client.jobs.each do |j| %>
+   <% if j.selected_submission_id %>
+    <%= link_to j.title.capitalize, j %>.
+   <% end %>
+ <% end %>

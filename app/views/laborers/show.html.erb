@@ -14,7 +14,15 @@
   <% end %>
 </div>
 </div>
-<% end %>
+
+<h3> Won Jobs </h3>
+  <% @laborer.jobs.each do |j| %>
+    <% if j.selected_submission_id %>
+    <%= link_to j.title.capitalize, j %>.
+    <% end %>
+   <% end %>
+
+
 
 <div class="row">
   <div class="col-md-8">
@@ -86,3 +94,4 @@
     <p id="notice"><%= notice %></p>
     <%= link_to 'edit', edit_laborer_registration_path(@laborer) %>
     <%= link_to 'home', root_path %>
+<% end %>

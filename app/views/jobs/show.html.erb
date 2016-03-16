@@ -19,7 +19,7 @@
     </br>
     <br>
     <% if @job.time %>
-     job posting expires in <%= time_ago_in_words(@job.created_at + @job.time.days) %>
+     job posting expires in <%= time_ago_in_words(@job.created_at + @job.time.day) %>
     </small>
   </h4>
   <% end %>
@@ -83,3 +83,6 @@
     <%= s.submit %>
   <% end %>
 <% end %>
+
+
+<%= render partial: 'selected', locals: { job: @job } %>
