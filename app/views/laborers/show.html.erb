@@ -11,23 +11,28 @@
     <div class="col-md-7">
           <%= month_calendar(attribute: :created_at) do |date| %>
     <%= date %>
-  <% end %>
+ <% end %>
 </div>
 </div>
 
+<!-- displays awarded jobs -->
 <h3> Won Jobs </h3>
   <% @laborer.jobs.each do |j| %>
     <% if j.selected_submission_id %>
-    <%= link_to j.title.capitalize, j %>.
+     <%= link_to j.title.capitalize, j %>.
     <% end %>
    <% end %>
-   <!-- displays chosen jobs -->
-     <h3> Selected Jobs </h3>
+
+   <h3> bidded Jobs </h3>
      <% @laborer.jobs.each do |j| %>
-      <% if j.selected_submission_id %>
-       <%= link_to j.title.capitalize, j %>.
+       <% if j.submissions %>
+       <% unless j.selected_submission_id %>
+        <%= link_to j.title.capitalize, j %>.
+       <% end %>
       <% end %>
-    <% end %>
+      <% end %>
+
+
 
 
 
@@ -56,23 +61,29 @@
   </div>
 </div>
 <div>
+  <!-- displays current open bids on jobs you chose -->
   <% if @laborer == pundit_user  %>
     <div class="row">
       <div class="col-md-8">
         <h3> Current Bids </h4>
-        <% @jobs.each do |job| %>
-
+        <% @laborer.jobs.each do |job| %>
         <div class="media">
           <div class="media-body">
             <h4 class="media-heading">
+              <% if job.submissions %>
+              <% unless job.selected_submission_id %>
               <%= link_to job.title, job %>
             </h4>
           </div>
         </div>
         <% end %>
+
       </div>
       <%end%>
     </div>
+    <% end %>
+    <% end %>
+
 <br>
 
     <div class"main">
