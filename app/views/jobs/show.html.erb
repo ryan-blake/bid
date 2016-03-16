@@ -54,10 +54,10 @@
      <% @submissions.each do |w| %>
       <b>$<%= w.price %>.00</b>.
      <% end %>
-     </ul>
-  <% end %>
  </br>
 </div>
+<% end %>
+
 
 
 <div>
@@ -66,23 +66,18 @@
       <%= link_to "edit", edit_job_path(@job), class: "btn btn-primary" %>
       <%= link_to "Delete", @job , :method => :delete %>
       <p>
-
       </p>
     <% end %>
   <% end %>
 </div>
-
+<% unless @job.selected_submission_id %>
 <% if current_laborer %>
   <%= form_for([@job, @submission]) do |s| %>
-
     <div class="form-group">
       <%= s.label :price %>
       <%= s.number_field :price %>
     </div>
-
     <%= s.submit %>
   <% end %>
 <% end %>
-
-
-<%= render partial: 'selected', locals: { job: @job } %>
+<% end %>

@@ -21,6 +21,14 @@
     <%= link_to j.title.capitalize, j %>.
     <% end %>
    <% end %>
+   <!-- displays chosen jobs -->
+     <h3> Selected Jobs </h3>
+     <% @laborer.jobs.each do |j| %>
+      <% if j.selected_submission_id %>
+       <%= link_to j.title.capitalize, j %>.
+      <% end %>
+    <% end %>
+
 
 
 
