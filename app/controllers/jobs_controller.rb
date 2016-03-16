@@ -37,7 +37,6 @@ class JobsController < ApplicationController
     @laborer = @job.laborer_id
     @submission = Submission.new
     @submissions = @job.submissions
-    # @prices = @price.all
     @client = @job.client
 
 

@@ -10,8 +10,8 @@ class LaborersController < ApplicationController
   # GET /laborers/1
   # GET /laborers/1.json
   def show
+   @laborer = Laborer.find(params[:id])
 
-    
     if params[:id]
         @laborer = Laborer.find(params[:id])
       end
