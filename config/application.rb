@@ -29,6 +29,9 @@ module Bid
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.initialize_on_precompile = false
+    #set time zone globally for calender 
+    config.time_zone = 'Central Time (US & Canada)'
+
 
 
     # Do not swallow errors in after_commit/after_rollback callbacks.

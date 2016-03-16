@@ -1,10 +1,20 @@
+ <% if current_client %>
 <div class="row">
   <div class="spacer"></div>
-  <div class="col-md-12">
+  <div class="col-md-8">
     <%= link_to "Compose", new_conversation_path, class: "btn btn-success" %>
     <div class="spacer"></div>
   </div>
-
+<% end %>
+ <% if @laborer === pundit_user %>
+  <div class="row">
+    <div class="col-md-7">
+          <%= month_calendar(attribute: :created_at) do |date| %>
+    <%= date %>
+  <% end %>
+</div>
+</div>
+<% end %>
 
 <div class="row">
   <div class="col-md-8">

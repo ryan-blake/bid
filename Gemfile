@@ -69,3 +69,4 @@ gem 'stripe'
 gem 'geocoder'
 gem 'mail'
 gem 'sendgrid-ruby'
+gem "simple_calendar", "~> 2.0"
