@@ -4,10 +4,8 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:index, :show, :edit, :update, :destroy]
   before_filter :login_required, unless: :pundit_user
 
-  # GET /jobs
-  # GET /jobs.json
   def index
-
+# sets up distance location
     ## @jobs = policy_scope(Job)
     ##laborer_longitude = request.location.longitude
     ##laborer_latitude = request.location.latitude //can't do on local server
@@ -21,16 +19,14 @@ class JobsController < ApplicationController
 
     @job = Job.find_by(params[:id])
 
-
-    if Laborer.present?
-      def show_bid_form
-        render :partial=>"submit/form"
-      end
-    end
+      #doesn't appeaer to be necessary.
+    # if Laborer.present?
+    #   def show_bid_form
+    #     render :partial=>"submit/form"
+    #   end
+    # end
   end
 
-  # GET /jobs/1
-  # GET /jobs/1.json
   def show
 
     @job = Job.find(params[:id])
@@ -115,19 +111,12 @@ def create
     end
   end
 
-
-  # PATCH/PUT /jobs/1
-  # PATCH/PUT /jobs/1.json
-
-
-
   # DELETE /jobs/1
   # DELETE /jobs/1.json
 
 end
 
   private
-
 
   # Use callbacks to share common setup or constraints between actions.
   def set_job

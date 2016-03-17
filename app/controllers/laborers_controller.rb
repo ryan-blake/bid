@@ -1,5 +1,5 @@
 class LaborersController < ApplicationController
-  before_action :set_laborer, only: [:show, :edit, :update, :destroy, :index]
+  before_action :set_laborer, only: [:show, :edit, :update, :destroy, :index, :create]
 
   # GET /laborers
   # GET /laborers.json
@@ -7,28 +7,18 @@ class LaborersController < ApplicationController
     @laborers = Laborer.all
   end
 
-  # GET /laborers/1
-  # GET /laborers/1.json
   def show
-   @laborer = Laborer.find(params[:id])
-
-    if params[:id]
-        @laborer = Laborer.find(params[:id])
-      end
-         @jobs = @laborer.jobs.all
+    @laborer = Laborer.find(params[:id])
   end
 
-  # GET /laborers/new
   def new
     @laborer = Laborer.new
   end
 
-  # GET /laborers/1/edit
   def edit
+    @laborer = Laborer.find(params[:id])
   end
 
-  # POST /laborers
-  # POST /laborers.json
   def create
     @laborer = Laborer.new(laborer_params)
 
@@ -44,8 +34,6 @@ class LaborersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /laborers/1
-  # PATCH/PUT /laborers/1.json
   def update
     @laborer = Laborer.find(params[:id])
     @laborer.assign_attributes(laborer_params)
@@ -60,8 +48,6 @@ class LaborersController < ApplicationController
     end
   end
 
-  # DELETE /laborers/1
-  # DELETE /laborers/1.json
   def destroy
     @laborer.destroy
     respond_to do |format|

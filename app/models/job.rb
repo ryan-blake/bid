@@ -39,10 +39,11 @@ class Job < ActiveRecord::Base
   def full_address
     [address1, address2, city, state, zipcode].join(', ')
   end
+  
   def expiration_from
     created_at + @job.time.days
   end
-  
+
   def expire_date
    a = created_at+time.days
    b = a.day

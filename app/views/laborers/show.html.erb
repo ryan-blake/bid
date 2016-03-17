@@ -16,12 +16,14 @@
 </div>
 
 <!-- displays awarded jobs -->
+
 <h3> Won Jobs </h3>
-  <% @laborer.jobs.each do |j| %>
-    <% if j.selected_submission_id %>
+  <% each do |j| %>
+  <% if j.selected_submission%>
      <%= link_to j.title.capitalize, j %>.
-    <% end %>
    <% end %>
+   <% end %>
+
 
    <h3> bidded Jobs </h3>
      <% @laborer.jobs.each do |j| %>
@@ -61,7 +63,7 @@
   </div>
 </div>
 <div>
-  <!-- displays current open bids on jobs you chose -->
+  <!-- displays current open bid jobs you've bid on-->
   <% if @laborer == pundit_user  %>
     <div class="row">
       <div class="col-md-8">

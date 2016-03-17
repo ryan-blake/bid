@@ -41,15 +41,19 @@ class Laborer < ActiveRecord::Base
   enum role: [:standard, :premium, :admin]
   has_many :submits, :as => :submittable
   has_many :reviews
+  #? submissions?
+  # has_many :submissions
   has_one :selected_submission
 
   geocoded_by :full_address
   after_validation :geocode
 
+  acts_as_messageable
+
+
   def full_address
     [address1, address2, city, state, zipcode].join(', ')
   end
-
 
   def init
     self.role  ||= "standard"          #will set the default value only if it's nil
