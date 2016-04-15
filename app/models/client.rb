@@ -40,10 +40,11 @@ class Client < ActiveRecord::Base
   has_one :selected_submission
   enum role: [:standard, :premium, :admin]
 
+  acts_as_messageable
+
   geocoded_by :full_address
   after_validation :geocode
 
-  acts_as_messageable
 
   def full_address
     [address1, address2, city, state, zipcode].join(', ')

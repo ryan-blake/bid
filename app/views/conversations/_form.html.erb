@@ -5,7 +5,7 @@
       <% if current_client && !params[:job_id] %>
         <%= f.select(:recipients, Laborer.all.collect {|p| [ p.name, p.id ] }, {}, { multiple: true , class: "form-control" })%>
       <% elsif current_client %>
-          <%= f.select(:recipient, Laborer.all.collect {|p| [ p.name, p.id ] }, { selected: Job.find(params[:job_id]).selected_submission.laborer_id, multiple: false , class: "form-control" })%>
+          <%= f.select(:recipients, Laborer.all.collect {|p| [ p.name, p.id ] }, { selected: Job.find(params[:job_id]).selected_submission.laborer_id, multiple: false , class: "form-control" })%>
       <% else %>
         <%= f.select(:recipients, Client.all.collect {|p| [ p.name, p.id ] }, {}, { multiple: true , class: "form-control" })%>
       <%end%>

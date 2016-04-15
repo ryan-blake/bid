@@ -45,11 +45,10 @@ class Laborer < ActiveRecord::Base
   # has_many :submissions
   has_one :selected_submission
 
-  geocoded_by :full_address
-  after_validation :geocode
-
   acts_as_messageable
 
+  geocoded_by :full_address
+  after_validation :geocode
 
   def full_address
     [address1, address2, city, state, zipcode].join(', ')

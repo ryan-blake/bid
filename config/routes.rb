@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'messegas/new'
+
+  get 'messegas/create'
+
   resources :charges, only: [:new, :create]
 
   devise_for :clients
@@ -22,13 +26,19 @@ Rails.application.routes.draw do
   get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
   get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
 
-  resources :conversations do
+  resources :conversations, only: [:index, :show, :destroy] do
     member do
       post :reply
-      post :trash
-      post :untrash
+      post :restore
+      post :mark_as_read
+    end
+    collection do
+      delete :empty_trash
     end
   end
+  
+  resources :messages, only: [:new, :create]
+
 
   root 'jobs#index'
 

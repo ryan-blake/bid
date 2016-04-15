@@ -61,6 +61,8 @@ gem 'devise'
 gem 'faker'
 #twitter bootstrap
 gem 'bootstrap-sass'
+gem 'bootstrap-will_paginate'
+gem 'will_paginate'
 gem 'pundit'
 gem 'mailboxer'
 gem 'whenever', :require => false
@@ -70,3 +72,4 @@ gem 'geocoder'
 gem 'mail'
 gem 'sendgrid-ruby'
 gem "simple_calendar", "~> 2.0"
+gem 'gravatar_image_tag'

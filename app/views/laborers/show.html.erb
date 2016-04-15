@@ -18,24 +18,24 @@
 <!-- displays awarded jobs -->
 
 <h3> Won Jobs </h3>
-  <% each do |j| %>
-  <% if j.selected_submission%>
+  <% @laborer.jobs.each do |j| %>
+  <% if j.selected_submission === @laborer %>
      <%= link_to j.title.capitalize, j %>.
+     <% else %>
+     No Jobs Won
    <% end %>
+
    <% end %>
 
 
    <h3> bidded Jobs </h3>
      <% @laborer.jobs.each do |j| %>
        <% if j.submissions %>
-       <% unless j.selected_submission_id %>
+        <% unless j.selected_submission_id %>
         <%= link_to j.title.capitalize, j %>.
+        <% end %>
        <% end %>
-      <% end %>
-      <% end %>
-
-
-
+     <% end %>
 
 
 
