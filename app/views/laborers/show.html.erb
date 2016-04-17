@@ -1,118 +1,58 @@
- <% if current_client %>
-<div class="row">
-  <div class="spacer"></div>
-  <div class="col-md-8">
-    <%= link_to "Compose", new_conversation_path, class: "btn btn-success" %>
-    <div class="spacer"></div>
-  </div>
-<% end %>
- <% if @laborer === pundit_user %>
-  <div class="row">
-    <div class="col-md-7">
-          <%= month_calendar(attribute: :created_at) do |date| %>
-    <%= date %>
- <% end %>
-</div>
-</div>
-
-<!-- displays awarded jobs -->
-
-<h3> Won Jobs </h3>
-  <% @laborer.jobs.each do |j| %>
-  <% if j.selected_submission === @laborer %>
-     <%= link_to j.title.capitalize, j %>.
-     <% else %>
-     No Jobs Won
-   <% end %>
-
-   <% end %>
-
-
-   <h3> bidded Jobs </h3>
-     <% @laborer.jobs.each do |j| %>
-       <% if j.submissions %>
-        <% unless j.selected_submission_id %>
-        <%= link_to j.title.capitalize, j %>.
-        <% end %>
-       <% end %>
-     <% end %>
-
-
-
 <div class="row">
   <div class="col-md-8">
-    <h1><%= @laborer.name %></h1>
+  <h1><%= @laborer.name %></h1>
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading">
-
+      <h4 class="media-heading">
           About: <%= @laborer.about %>
-        </h4>
+      </h4>
         <small>
           contact: <%= @laborer.email %>
         </small>
-        <br>
-        Average Rating:
+      <br>
+          Average Rating:
         <% @laborer.reviews.average(:rating).to_i.times do %>
-        <%= image_tag "Star.png", :size => "25x25" %>
+          <%= image_tag "Star.png", :size => "25x25" %>
         <% end %>
         <br>
-        ask a question: mailer compose
-      </br>
+
+        <% unless pundit_user == @laborer %>
+             <%= link_to 'Send message', new_message_path(to: @laborer.id), class: 'btn btn-default btn-sm' %>
+        <% end %>      </br>
     </div>
   </div>
+ </div>
 </div>
-<div>
-  <!-- displays current open bid jobs you've bid on-->
-  <% if @laborer == pundit_user  %>
-    <div class="row">
-      <div class="col-md-8">
-        <h3> Current Bids </h4>
-        <% @laborer.jobs.each do |job| %>
-        <div class="media">
-          <div class="media-body">
-            <h4 class="media-heading">
-              <% if job.submissions %>
-              <% unless job.selected_submission_id %>
-              <%= link_to job.title, job %>
-            </h4>
-          </div>
-        </div>
-        <% end %>
 
-      </div>
-      <%end%>
-    </div>
-    <% end %>
-    <% end %>
 
-<br>
-
-    <div class"main">
-      <div class="row">
-        <div class="col-md-8">
-          <h4>Reviews </h4>
-
+  <div class="row">
+    <div class="col-md-8">
+      <div class="media">
+        <div class="media-body-1">
+          <h3>Reviews </h3>
           <% @laborer.reviews.each do |review| %>
-          <Li><b> <%= review.title %> </b></li>
-          by <%= review.author %>,  <%= time_ago_in_words(review.created_at)%> ago<br/>
-          <%= review.content %> <br/>
-        <b>User Rating:</b>  <% review.rating.times do  %>
+            <Li><b> <%= review.title %> </b></li>
+              by <%= review.author %>,  <%= time_ago_in_words(review.created_at)%> ago
+              <br/>
+              <%= review.content %>
+              <br/>
+          <b>User Rating:</b>
+          <% review.rating.times do  %>
           <%= image_tag "Star.png", :size => "25x25"%>
           <% end %>
-        </div>
         <% end %>
       </div>
-
     </div>
+   </div>
+  </div>
+
     <br>
      <% if current_client %>
-     <h4> Create Review: </h4>
-     <%= render partial: 'form' %>
-    <% end %>
+       <h4> Create Review: </h4>
+       <%= render partial: 'form' %>
+     <% end %>
 
 
     <p id="notice"><%= notice %></p>
     <%= link_to 'edit', edit_laborer_registration_path(@laborer) %>
     <%= link_to 'home', root_path %>
-<% end %>

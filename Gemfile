@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
@@ -34,8 +33,6 @@ gem 'rspec-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-
 
 group :production do
   gem 'pg'
@@ -73,3 +70,5 @@ gem 'mail'
 gem 'sendgrid-ruby'
 gem "simple_calendar", "~> 2.0"
 gem 'gravatar_image_tag'
+gem 'chosen-rails'
+gem 'jquery-turbolinks'

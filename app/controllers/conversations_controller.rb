@@ -1,5 +1,4 @@
   class ConversationsController < ApplicationController
-    before_action :authenticate_client! || :authenticate_laborer!
     before_action :get_mailbox
     before_action :get_conversation, except: [:index, :empty_trash]
     before_action :get_box, only: [:index]

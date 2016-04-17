@@ -1,10 +1,7 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_client! || :authenticate_laborer!
   def new
-
+# fix chosen recipient with hidden_field tag
     @chosen_recipient = Laborer.find_by(id: params[:to].to_i) if params[:to] || Client.find_by(id: params[:to].to_i) if params[:to]
-
-
 
   end
 
