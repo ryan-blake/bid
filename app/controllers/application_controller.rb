@@ -17,7 +17,10 @@ class ApplicationController < ActionController::Base
   def pundit_user
     current_client || current_laborer
   end
-
+  
+ def user
+   Client.all && Laborer.all
+ end
   rescue_from ActiveRecord::RecordNotFound do
   flash[:warning] = 'Resource not found.'
   redirect_back_or root_path
