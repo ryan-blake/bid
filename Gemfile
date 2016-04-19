@@ -41,7 +41,6 @@ group :production do
 end
 group :development do
   gem 'sqlite3'
-  gem 'rails_12factor'
   gem 'web-console'
   gem 'annotate'
 end
