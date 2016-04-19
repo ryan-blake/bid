@@ -67,6 +67,7 @@ categories = Category.all
    laborer: laborers.sample
   )
 end
+
   reviews = Review.all
 
 # Creates jobs

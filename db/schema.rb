@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312165430) do
+ActiveRecord::Schema.define(version: 20160312012646) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -53,13 +53,13 @@ ActiveRecord::Schema.define(version: 20160312165430) do
   create_table "jobs", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "laborer_id"
     t.integer  "client_id"
     t.integer  "category_id"
     t.integer  "selected_submission_id"
-    t.integer  "time"
+    t.integer  "time",                   default: 7, null: false
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address1"
@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20160312165430) do
     t.string   "city"
     t.string   "state"
     t.integer  "zipcode"
-    t.integer  "hime"
   end
 
   add_index "jobs", ["category_id"], name: "index_jobs_on_category_id"
