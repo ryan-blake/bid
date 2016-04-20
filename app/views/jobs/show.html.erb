@@ -32,8 +32,7 @@
         <p>
           Selected Submission: <%= @job.selected_submission.pretty_print %>.
           <!-- if selected submission renders direct message with chosen laborer -->
-          <%= link_to "Talk With #{@job.selected_submission.laborer.name}",
-            new_conversation_path(job_id: @job.id) %>
+          <%= link_to "Talk With #{@job.selected_submission.laborer.name}", new_message_path(to: @job.selected_submission.laborer.id) %>
         <p>
       <% else %>
         <%= form_for @job do |f| %>

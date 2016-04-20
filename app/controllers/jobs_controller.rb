@@ -5,7 +5,9 @@ class JobsController < ApplicationController
   before_filter :login_required, unless: :pundit_user
 
   def index
-# sets up distance location
+    # sets up distance location>>>>>>
+
+
     ## @jobs = policy_scope(Job)
     ##laborer_longitude = request.location.longitude
     ##laborer_latitude = request.location.latitude //can't do on local server
@@ -16,7 +18,6 @@ class JobsController < ApplicationController
     # @jobs = Job.near([laborer_latitude, laborer_longitude], 30)
 
     @jobs = Job.all
-
     @job = Job.find_by(params[:id])
 
       #doesn't appeaer to be necessary.

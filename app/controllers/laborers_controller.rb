@@ -22,7 +22,6 @@ class LaborersController < ApplicationController
   def create
     @laborer = Laborer.new(laborer_params)
 
-
     respond_to do |format|
       if @laborer.save
         format.html { redirect_to @laborer, notice: 'Laborer was successfully created.' }

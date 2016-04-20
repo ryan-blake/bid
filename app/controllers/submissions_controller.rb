@@ -11,7 +11,6 @@ class SubmissionsController < ApplicationController
   end
 
   def create
-
     laborer = current_laborer
 
     @job = Job.find(params[:job_id])
