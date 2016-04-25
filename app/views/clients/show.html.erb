@@ -1,21 +1,22 @@
+<!-- create new message with @client, make only available to laborers with submissions! fix -->
 <% unless pundit_user == @client%>
-     <%= link_to 'Send message', new_message_path(to: @client.id), class: 'btn btn-default btn-sm' %>
-   <% end %>
-
+  <%= link_to 'Send message', new_message_path(to: @client.id), class: 'btn btn-default btn-sm' %>
+<% end %>
+<!-- clients detils -->
 <p id="notice"><%= notice %></p>
- <h1> <%= @client.name %> </h1>
- <p> <%= @client.email %></p>
+  <h1> <%= @client.name %> </h1>
+  <p> <%= @client.email %></p>
 <%= link_to 'Back', clients_path %>
 <% if @client == pundit_user %>
   <%= link_to 'Edit', edit_client_registration_path(@client) %> |
 <% end %>
 
 <!-- displays selected jobs -->
-  <h3> Selected Jobs </h3>
-  <% @client.jobs.each do |j| %>
-   <% if j.selected_submission_id %>
+<h3> Selected Jobs </h3>
+ <% @client.jobs.each do |j| %>
+  <% if j.selected_submission_id %>
     <%= @seljob = link_to j.title.capitalize, j %>.
-   <% end %>
+  <% end %>
  <% end %>
 <br>
 <!-- displays open jobs -->

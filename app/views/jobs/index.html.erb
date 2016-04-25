@@ -1,35 +1,32 @@
-
-<p id="notice"><%= notice %></p>
-
+<!-- show only XX characters from job.description fix -->
+<p id="notice">
+  <%= notice %></p>
+  <h3> all jobs </h3>
+  <% if current_laborer %>
+    <%= link_to "Get Premium Account", new_charge_path, class: 'btn btn-success' %>
+  <% end %>
+    <% if current_client %>
+      <%= link_to 'Create New Job', new_job_path %>
+    <% end %>
+  </br>
 <div class="row">
   <div class="col-md-8">
-    <% @jobs.each do |job| %>
+  <% @jobs.each do |job| %>
     <div class="media">
       <div class="media-body">
         <h4 class="media-heading">
-          <% unless job.selected_submission_id %>
-          <%= link_to job.title, job %>
-        </h4>
-        <small>
-          <%= job.description %>
-        </small>
-        <small>
+        <% unless job.selected_submission_id %>
+          <%= link_to job.title, job %>:
+          <small>
+           <%= job.description %>
+          </small>
+          <small>
           <td><%= link_to 'Show', job %></td>
-        </small>
+          </small>
+        <% end %>
+  <% end %>
       </div>
     </div>
-    <% end %>
-    <% end %>
   </div>
-  <body>
-<% if current_laborer %>
-
-<%= link_to "Premium Account", new_charge_path, class: 'btn btn-success' %>
-<% end %>
-
-
-<br>
-  <% if current_client %>
-    <%= link_to 'New Job', new_job_path %>
-  <% end %>
-</br>
+</div>
+<body>

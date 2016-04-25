@@ -9,8 +9,8 @@
       <%= @seljob = link_to j.title.capitalize, j %>.
      <% end %>
     <% end %>
-   <% end %>
   <% end %>
+ <% end %>
 
   <br>
   <strong> Open Jobs: </strong>
@@ -67,34 +67,34 @@
 </div>
 
 
-  <div class="row">
-    <div class="col-md-8">
-      <div class="media">
-        <div class="media-body-1">
-          <h3>Reviews </h3>
-          <% @laborer.reviews.each do |review| %>
-            <Li><b> <%= review.title %> </b></li>
-              by <%= review.author %>,  <%= time_ago_in_words(review.created_at)%> ago
-              <br/>
-              <%= review.content %>
-              <br/>
-          <b>User Rating:</b>
-          <% review.rating.times do  %>
-          <%= image_tag "Star.png", :size => "25x25"%>
-          <% end %>
+<div class="row">
+  <div class="col-md-8">
+    <div class="media">
+      <div class="media-body-1">
+        <h3>Reviews </h3>
+        <% @laborer.reviews.each do |review| %>
+          <Li><b> <%= review.title %> </b></li>
+            by <%= review.author %>,  <%= time_ago_in_words(review.created_at)%> ago
+            <br/>
+            <%= review.content %>
+            <br/>
+        <b>User Rating:</b>
+        <% review.rating.times do  %>
+        <%= image_tag "Star.png", :size => "25x25"%>
         <% end %>
-      </div>
+      <% end %>
     </div>
-   </div>
   </div>
+ </div>
+</div>
 
-    <br>
-     <% if current_client %>
-       <h4> Create Review: </h4>
-       <%= render partial: 'form' %>
-     <% end %>
+<br>
+ <% if current_client %>
+   <h4> Create Review: </h4>
+   <%= render partial: 'form' %>
+ <% end %>
 
 
-    <p id="notice"><%= notice %></p>
-    <%= link_to 'edit', edit_laborer_registration_path(@laborer) %>
-    <%= link_to 'home', root_path %>
+<p id="notice"><%= notice %></p>
+<%= link_to 'edit', edit_laborer_registration_path(@laborer) %>
+<%= link_to 'home', root_path %>
