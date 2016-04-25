@@ -16,6 +16,10 @@ class Submission < ActiveRecord::Base
   belongs_to :submittable, polymorphic: true
 
   def pretty_print
-    " $#{price}.00 by #{laborer.name}\n"
+    " $#{price}.00 by #{laborer.name} link out to name before selecting submission.\n"
+
+  end
+  def link_laborers
+     link_to laborer.name, laborer
   end
 end
