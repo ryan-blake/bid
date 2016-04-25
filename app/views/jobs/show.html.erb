@@ -56,8 +56,10 @@
       <tr>     <%= gravatar_for p.laborer, 45%>
       <tr> <%= link_to p.laborer.name + "'s" + " profile" + "\n", p.laborer %>
        <% end %>
-        <br/>
+        <div>
+          <br>
         <%= f.submit 'Select Bid' %>
+        <div>
         <%end%>
       <%end%>
     <% else %>
@@ -71,7 +73,6 @@
     <% @submissions.each do |w| %>
       <b>$<%= w.price %>.00</b>.
     <% end %>
-    </br>
     </div>
   <% end %>
 
