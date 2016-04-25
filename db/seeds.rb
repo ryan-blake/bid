@@ -77,7 +77,6 @@ end
   description:    Faker::Hipster.paragraph,
   client: clients.sample,
   category: categories.sample,
-  laborer: laborers.sample,
   time: 7,
   # created_at: "2015-2-15 12:04:01"
   )

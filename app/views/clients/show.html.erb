@@ -3,11 +3,11 @@
    <% end %>
 
 <p id="notice"><%= notice %></p>
-<h1> <%= @client.name %> </h1>
-<p> <%= @client.email %></p>
+ <h1> <%= @client.name %> </h1>
+ <p> <%= @client.email %></p>
 <%= link_to 'Back', clients_path %>
 <% if @client == pundit_user %>
-<%= link_to 'Edit', edit_client_registration_path(@client) %> |
+  <%= link_to 'Edit', edit_client_registration_path(@client) %> |
 <% end %>
 
 <!-- displays selected jobs -->
@@ -21,9 +21,8 @@
 <!-- displays open jobs -->
 <H3> OPEN-JOBS </H3>
 <% j = @client.jobs.all %>
-
-  <% j.each do |t| %>
-  <% unless t.selected_submission_id %>
-    <%= @opjob = link_to t.title.capitalize, t%>
-    <% end %>
-    <% end %>
+<% j.each do |t| %>
+ <% unless t.selected_submission_id %>
+  <%= @opjob = link_to t.title.capitalize, t%>
+ <% end %>
+<% end %>

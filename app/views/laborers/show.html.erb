@@ -1,4 +1,46 @@
 <div class="row">
+<% if current_laborer == @laborer %>
+  <!-- displays open jobs -->
+  <strong> Won Jobs:</strong>
+  <% Job.all.each do |j| %>
+   <% unless j.selected_submission_id == nil  %>
+    <% j.submissions.each do |s| %>
+     <%if s.laborer_id == @laborer.id %>
+      <%= @seljob = link_to j.title.capitalize, j %>.
+     <% end %>
+    <% end %>
+   <% end %>
+  <% end %>
+
+  <br>
+  <strong> Open Jobs: </strong>
+  <% Job.all.each do |j| %>
+   <% if j.selected_submission_id == nil  %>
+    <% j.submissions.each do |s| %>
+     <%if s.laborer_id == @laborer.id %>
+      <%= @openjob = link_to j.title.capitalize, j %>
+     <% end %>
+    <% end %>
+   <% end %>
+  <% end %>
+  <br>
+  <strong> out bid Jobs: </strong>
+  <% Job.all.each do |j| %>
+   <% if j.selected_submission_id == nil  %>
+    <% j.submissions.each do |s| %>
+     <%if s.laborer_id == @laborer.id %>
+  <!-- print highest current bid by client if jobs highest bid != @laborer -->
+    $<%=  s.price  %>
+      <%= @openjob = link_to j.title.capitalize, j %>
+     <% end %>
+    <% end %>
+   <% end %>
+  <% end %>
+
+<% end %>
+
+
+<div class="row">
   <div class="col-md-8">
   <h1><%= @laborer.name %></h1>
     <div class="media">
