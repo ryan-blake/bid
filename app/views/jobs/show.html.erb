@@ -48,12 +48,14 @@
         <%= b.label(class: "radio_button", "data-value": b.value ) { b.radio_button(class: "radio_button") + b.text } %>
       <% end %>
      <br>
+   </table>
+<table>
        <% count = 0 %>
        <% @submissions.each do | p | %>
-         <%= count += 1 %>:
-         <%= link_to p.laborer.name + "'s" + " profile", p.laborer %>
+       <%= count += 1 %>:
+      <tr>     <%= gravatar_for p.laborer, 45%>
+      <tr> <%= link_to p.laborer.name + "'s" + " profile" + "\n", p.laborer %>
        <% end %>
-    </table>
         <br/>
         <%= f.submit 'Select Bid' %>
         <%end%>

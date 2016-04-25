@@ -1,5 +1,4 @@
 <!-- show only XX characters from job.description fix -->
-<p id="notice">
   <%= notice %></p>
   <h3> all jobs </h3>
   <% if current_laborer %>
@@ -9,6 +8,7 @@
       <%= link_to 'Create New Job', new_job_path %>
     <% end %>
   </br>
+  <p id="notice">
 <div class="row">
   <div class="col-md-8">
   <% @jobs.each do |job| %>
