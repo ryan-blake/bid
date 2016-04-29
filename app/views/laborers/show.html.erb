@@ -25,6 +25,7 @@
   <% end %>
   <br>
   <strong> out bid Jobs: </strong>
+  <!-- find if > price == @laborer to print job fix -->
   <% Job.all.each do |j| %>
    <% if j.selected_submission_id == nil  %>
     <% j.submissions.each do |s| %>
