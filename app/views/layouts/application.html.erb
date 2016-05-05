@@ -13,12 +13,12 @@
      <% if current_client %>
       <%= link_to current_client.name, client_path(current_client) %>
       <%= link_to "Sign Out", destroy_client_session_path, method: :delete %>
-      <li><%= link_to 'Your Conversations', conversations_path %></li>
+      <li><%= link_to 'Messeges', conversations_path %></li>
 
      <% elsif current_laborer %>
       <%= link_to current_laborer.name, laborer_path(current_laborer) %>
       <%= link_to "Sign Out", destroy_laborer_session_path, method: :delete %>
-      <li><%= link_to 'Your Conversations', conversations_path %></li>
+      <li><%= link_to 'Messeges', conversations_path %></li>
 
 
      <%else%>
