@@ -131,6 +131,6 @@ end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def job_params
-    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price, :current_client, :selected_submission_id, :address1, :address2, :city, :state, :zipcode, :time)
+    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price, :current_client, :selected_submission_id, :address1, :address2, :city, :state, :zipcode, :time, images_files: [])
   end
 end

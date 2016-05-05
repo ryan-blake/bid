@@ -71,3 +71,5 @@ gem "simple_calendar", "~> 2.0"
 gem 'gravatar_image_tag'
 gem 'chosen-rails'
 gem 'jquery-turbolinks'
+gem "refile", require: 'refile/rails', git: "https://github.com/refile/refile.git"
+gem "refile-mini_magick"

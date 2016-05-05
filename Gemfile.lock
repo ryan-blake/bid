@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/refile/refile.git
+  revision: e844cc96ed5d07d07f6bde96b6429c01cd291b9a
+  specs:
+    refile (0.6.2)
+      mime-types
+      rest-client (~> 1.8)
+      sinatra (>= 1.4.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -138,6 +147,7 @@ GEM
       rails (>= 3.2.0)
     mime-types (2.99)
     mimemagic (0.3.1)
+    mini_magick (4.5.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
@@ -150,6 +160,8 @@ GEM
     pundit (1.0.1)
       activesupport (>= 3.0.0)
     rack (1.6.4)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5)
@@ -187,6 +199,9 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.2.1)
       json (~> 1.4)
+    refile-mini_magick (0.2.0)
+      mini_magick (~> 4.0)
+      refile (~> 0.5)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rest-client (1.8.0)
@@ -226,6 +241,10 @@ GEM
       smtpapi (~> 0.1)
     simple_calendar (2.0.6)
       rails (>= 3.0)
+    sinatra (1.4.7)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     smtpapi (0.1.0)
     spring (1.6.2)
     sprockets (3.5.2)
@@ -286,6 +305,8 @@ DEPENDENCIES
   pundit
   rails (= 4.2.5)
   rails_12factor
+  refile!
+  refile-mini_magick
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

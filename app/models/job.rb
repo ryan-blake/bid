@@ -27,6 +27,8 @@ class Job < ActiveRecord::Base
   belongs_to :client
   belongs_to :category
   has_many :submissions
+  has_many :images, dependent: :destroy
+  accepts_attachments_for :images, attachment: :file, append: true
   has_one :selected_submission
   # accepts_nested_attributes_for :submits
   belongs_to :selected_submission, class_name: "Submission"
@@ -39,7 +41,7 @@ class Job < ActiveRecord::Base
   def full_address
     [address1, address2, city, state, zipcode].join(', ')
   end
-  
+
   def expiration_from
     created_at + @job.time.days
   end
