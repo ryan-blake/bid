@@ -18,10 +18,10 @@
         <% unless job.selected_submission_id %>
           <%= link_to job.title, job %>:
           <small>
-           <%= job.description %>
+           <%= job.description.truncate(29) %>
           </small>
           <small>
-          <td><%= link_to 'Show', job %></td>
+          <td><%= link_to 'view', job %></td>
           </small>
         <% end %>
   <% end %>
