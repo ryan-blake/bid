@@ -79,9 +79,8 @@
   <br>
   <!-- images array -->
   <p>
-  <strong>Images:</strong>
   <% @job.images.each do |i| %>
-    <%= attachment_image_tag(i, :file, :fill, 350, 350, format: "jpg") %>
+    <%= attachment_image_tag(i, :file, :fill, 370, 370, format: "jpg") %>
   <% end %>
 </p>
 

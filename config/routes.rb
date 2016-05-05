@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:new, :create]
 
-
   root 'jobs#index'
+
 
 end
