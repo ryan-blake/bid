@@ -11,7 +11,7 @@
 #  client_id              :integer
 #  category_id            :integer
 #  selected_submission_id :integer
-#  time                   :integer
+#  time                   :integer          default(7), not null
 #  latitude               :float
 #  longitude              :float
 #  address1               :string
@@ -19,7 +19,6 @@
 #  city                   :string
 #  state                  :string
 #  zipcode                :integer
-#  hime                   :integer
 #
 
 class Job < ActiveRecord::Base
