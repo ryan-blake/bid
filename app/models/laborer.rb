@@ -36,6 +36,7 @@ class Laborer < ActiveRecord::Base
   #  :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+
   has_many :jobs
   has_many :clients, through: :jobs
   enum role: [:standard, :premium, :admin]
@@ -45,11 +46,11 @@ class Laborer < ActiveRecord::Base
   # has_many :submissions
   has_one :selected_submission
 
-  acts_as_messageable
+  # allows messages
 
+  # creates a longitude and latitude with address.
   geocoded_by :full_address
   after_validation :geocode
-
   def full_address
     [address1, address2, city, state, zipcode].join(', ')
   end
