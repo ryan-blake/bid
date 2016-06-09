@@ -4,12 +4,15 @@ class MessagesController < ApplicationController
         # remove drop down list of recipients from new message show.
     # @chosen_recipient = Client.find_by(id: params[:to].to_i) && Client.find_by(id: params[:to].to_i) if params[:to]
     @chosen_recipient = Laborer.find_by(id: params[:to].to_i) if params[:to]
-
-
+    @chosen_recipient_client = Client.find_by(id: params[:to].to_i) if params[:to]
   end
 
   def create
-    recipients = Laborer.where(id: params['recipients']) || Client.where(id: params['recipients'])
+    if current_client
+      recipients = Laborer.where(id: params['recipients'])
+    else
+    recipients = Client.where(id: params['recipients'])
+    end
     conversation = pundit_user.send_message(recipients, params[:message][:body], params[:message][:subject]).conversation
     flash[:success] = "Message has been sent!"
     redirect_to conversation_path(conversation)
