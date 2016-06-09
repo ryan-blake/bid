@@ -11,8 +11,8 @@
   <p id="notice">
 <div class="row">
   <div class="col-md-8">
-  <% @jobs.each do |job| %>
-    <div class="media">
+   <% @jobs.each do |job| %>
+     <div class="media">
       <div class="media-body">
         <h4 class="media-heading">
         <% unless job.selected_submission_id %>
@@ -25,7 +25,7 @@
           <td><%= link_to 'view', job %></td>
           </small>
         <% end %>
-  <% end %>
+   <% end %>
       </div>
     </div>
   </div>

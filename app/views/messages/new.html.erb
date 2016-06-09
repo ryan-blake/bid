@@ -14,7 +14,12 @@
 
   <div class="form-group">
     <%= label_tag 'recipients', 'Choose recipients' %>
+    <% if pundit_user = current_client %>
     <%= select_tag 'recipients', recipients_options(@chosen_recipient), multiple: false, class: 'form-control chosen-it' %>
+ <%end %>
+    <% if pundit_user = current_laborer %>
+    <%= select_tag 'recipients', recipients_options(@chosen_recipient_client), multiple: false, class: 'form-control chosen-it' %>
+   <% end %>
   </div>
   <%= submit_tag 'Send', class: 'btn btn-primary' %>
 <% end %>
