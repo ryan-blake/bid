@@ -60,6 +60,12 @@
  <div class="field">
      <%= f.label :images_files %><br>
      <%= f.attachment_field :images_files, multiple: true, presigned: true, direct: true %>
+     <table>
+       <% @job.images.each do |i| %>
+         <%= attachment_image_tag(i, :file, :fill, 370, 370, format: "jpg") %>
+       <% end %>
+      <br>
+    </table>
  </div>
 
 <br>
