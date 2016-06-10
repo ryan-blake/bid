@@ -91,7 +91,7 @@ Rails.application.configure do
   user_name: ENV["SENDGRID_USERNAME"],
   password: ENV["SENDGRID_PASSWORD"]
   }
-  
+
   require "refile/s3"
 
   aws = {
@@ -103,9 +103,6 @@ Rails.application.configure do
 
   Refile.backends["images_files_backend"] = Refile::S3.new(prefix: "store/images_files", **aws)
   Refile.cache = Refile::S3.new(max_size: 5.megabytes, prefix: "cache", **aws)
-
-
-  end
 
 
 
