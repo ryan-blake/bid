@@ -28,6 +28,7 @@ class Job < ActiveRecord::Base
   has_many :submissions
   has_many :images, dependent: :destroy
   accepts_attachments_for :images, attachment: :file, append: true
+
   has_one :selected_submission
   # accepts_nested_attributes_for :submits
   belongs_to :selected_submission, class_name: "Submission"

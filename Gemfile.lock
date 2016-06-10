@@ -299,7 +299,6 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  aws-sdk
   bootstrap-sass
   bootstrap-will_paginate
   chosen-rails
