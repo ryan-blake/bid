@@ -57,16 +57,20 @@
   <%= f.number_field :time %>
  </div>
 
+ <!-- figure out how to display and actually upload -->
+
  <div class="field">
-     <%= f.label :images_files %><br>
-     <%= f.attachment_field :images_files, multiple: true, presigned: true, direct: true %>
-     <table>
-       <% @job.images.each do |i| %>
-         <%= attachment_image_tag(i, :file, :fill, 370, 370, format: "jpg") %>
-       <% end %>
-      <br>
-    </table>
- </div>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
+  <% if @photos %>
+    <div class="field">
+      <%= image_tag @photos.image_url(:thumb) %>
+    </div>
+    <div class="field">
+      Remove attachment: <%= f.check_box :remove_image %>
+    </div>
+    <% end %>
 
 <br>
 

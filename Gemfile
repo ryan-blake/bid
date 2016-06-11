@@ -71,6 +71,10 @@ gem "simple_calendar", "~> 2.0"
 gem 'gravatar_image_tag'
 gem 'chosen-rails'
 gem 'jquery-turbolinks'
-gem "refile", require: 'refile/rails', git: "https://github.com/refile/refile.git"
-gem "refile-mini_magick"
-gem 'refile-s3'
+gem 'shrine', '~> 2.0'
+gem 'fastimage'
+gem 'image_processing'
+gem 'mini_magick'
+gem 'aws-sdk'
+gem 'roda'                   # for direct_upload plugin
+gem 'sucker_punch', '~> 2.0' # for backgrounding plugin

@@ -16,7 +16,6 @@
       <div class="media-body">
         <h4 class="media-heading">
         <% unless job.selected_submission_id %>
-        <td><%= attachment_image_tag(job.images.first, :file, :fill, 80, 80) %></td>
           <%= link_to job.title, job %>:
           <small>
            <%= job.description.truncate(29) %>
