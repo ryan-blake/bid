@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608142322) do
+ActiveRecord::Schema.define(version: 20160611180233) do
+
+  create_table "albums", force: :cascade do |t|
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -76,7 +79,6 @@ ActiveRecord::Schema.define(version: 20160608142322) do
     t.string   "city"
     t.string   "state"
     t.integer  "zipcode"
-    t.string   "file_id"
   end
 
   add_index "jobs", ["category_id"], name: "index_jobs_on_category_id"
@@ -171,6 +173,16 @@ ActiveRecord::Schema.define(version: 20160608142322) do
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
+
+  create_table "photos", force: :cascade do |t|
+    t.text     "image_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "job_id"
+    t.integer  "album_id"
+  end
+
+  add_index "photos", ["job_id"], name: "index_photos_on_job_id"
 
   create_table "reviews", force: :cascade do |t|
     t.string   "title"
