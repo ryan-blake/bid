@@ -94,8 +94,7 @@ Rails.application.configure do
 
   require "refile/s3"
 
-  GET /?location HTTP/1.1
-Host: bidscape.s3.amazonaws.com
+
 
   aws = {
     access_key_id: ENV('AWS_ACCESS_KEY_ID'),
