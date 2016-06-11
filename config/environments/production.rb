@@ -94,16 +94,19 @@ Rails.application.configure do
 
   require "refile/s3"
 
+  GET /?location HTTP/1.1
+Host: bidscape.s3.amazonaws.com
+
   aws = {
-    access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
-    secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
-    bucket: ENV.fetch('S3_BUCKET_NAME'),
-    region: "us-west-2",
+    access_key_id: ENV('AWS_ACCESS_KEY_ID'),
+    secret_access_key: ENV('AWS_SECRET_ACCESS_KEY'),
+    bucket: ENV('S3_BUCKET_NAME'),
+    region: "us-west-1",
   }
 
   Refile.backends["images_files_backend"] = Refile::S3.new(prefix: "store/images_files", **aws)
   Refile.cache = Refile::S3.new(max_size: 5.megabytes, prefix: "cache", **aws)
-  
+
   if Rails.env.production?
   config.action_controller.asset_host = 'd3i71dcp5fkggo.cloudfront.net'
   end
