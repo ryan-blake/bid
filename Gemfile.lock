@@ -301,6 +301,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  aws-sdk
   bootstrap-sass
   bootstrap-will_paginate
   chosen-rails
@@ -337,4 +338,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.10.6
+   1.12.5

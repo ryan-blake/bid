@@ -74,3 +74,4 @@ gem 'jquery-turbolinks'
 gem "refile", require: 'refile/rails', git: "https://github.com/refile/refile.git"
 gem "refile-mini_magick"
 gem 'refile-s3'
+gem 'aws-sdk'
