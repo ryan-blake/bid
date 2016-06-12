@@ -2,7 +2,8 @@
 c = Client.find_or_initialize_by(
   email: 'ryan_blake@icloud.com',
   name: 'Ryan K',
-  role: 2
+  role: 2,
+  zipcode: 76135
 )
 c.skip_confirmation!
 c.password = "testtest"
@@ -11,7 +12,8 @@ c.save!
 l = Laborer.find_or_initialize_by(
   email: 'ryan_blake@mac.com',
   name: 'R K',
-  role: 2
+  role: 2,
+  zipcode: 76135
 )
 l.skip_confirmation!
 l.about= Faker::Lorem.sentence
@@ -25,7 +27,20 @@ l.save!
   email:   Faker::Internet.email,
   name:     Faker::Name.name,
   password: "testtest",
-  role: 1
+  role: 1,
+  zipcode: 76244
+    )
+  client.skip_confirmation!
+  client.save!
+end
+5.times do
+  client = Client.create!(
+  # #3
+  email:   Faker::Internet.email,
+  name:     Faker::Name.name,
+  password: "testtest",
+  role: 1,
+  zipcode: 76262
     )
   client.skip_confirmation!
   client.save!
@@ -40,7 +55,21 @@ clients = Client.all
   name:     Faker::Name.name,
   password: "testtest",
   about:    Faker::Lorem.sentence,
-  role: 1
+  role: 1,
+  zipcode: 76244
+  )
+  laborer.skip_confirmation!
+  laborer.save!
+end
+5.times do
+  laborer = Laborer.new(
+  # #3
+  email:   Faker::Internet.email,
+  name:     Faker::Name.name,
+  password: "testtest",
+  about:    Faker::Lorem.sentence,
+  role: 1,
+  zipcode: 76262
   )
   laborer.skip_confirmation!
   laborer.save!
@@ -48,15 +77,6 @@ end
 laborers = Laborer.all
 
 
-category_array = %w(Mulch Trees Mowing Garden Rocks Grass)
-
-category_array.each do |c|
-  Category.find_or_create_by(
-    name: c
-  )
-end
-
-categories = Category.all
 
 10.times do
   Review.create!(
@@ -67,17 +87,37 @@ categories = Category.all
    laborer: laborers.sample
   )
 end
-
   reviews = Review.all
 
+  category_array = %w(Mulch Trees Mowing Garden Rocks Grass)
+
+  category_array.each do |c|
+    Category.find_or_create_by(
+      name: c
+    )
+  end
+  categories = Category.all
+
 # Creates jobs
-20.times do
+10.times do
   Job.create!(
   title:       Faker::Hipster.word,
   description:    Faker::Hipster.paragraph,
   client: clients.sample,
   category: categories.sample,
   time: 7,
+  zipcode: 76244
+  # created_at: "2015-2-15 12:04:01"
+  )
+end
+10.times do
+  Job.create!(
+  title:       Faker::Hipster.word,
+  description:    Faker::Hipster.paragraph,
+  client: clients.sample,
+  category: categories.sample,
+  time: 7,
+  zipcode: 76262
   # created_at: "2015-2-15 12:04:01"
   )
 end
@@ -94,7 +134,7 @@ end
 
 jobs = Job.all
 
-10.times do
+15.times do
   Submission.create!(
     price: "2..12",
     laborer: laborers.sample,

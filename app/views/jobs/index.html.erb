@@ -1,6 +1,15 @@
 <!-- show only XX characters from job.description fix -->
   <%= notice %></p>
   <h3> all jobs </h3>
+
+  <% form_tag jobs_path, :method => 'get' do %>
+    <p>
+      <%= text_field_tag :search %>
+      <%= submit_tag "Search" %>
+    </p>
+  <% end %>
+
+
   <% if current_laborer %>
     <%= link_to "Get Premium Account", new_charge_path, class: 'btn btn-success' %>
   <% end %>

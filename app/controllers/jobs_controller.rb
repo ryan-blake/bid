@@ -6,15 +6,18 @@ class JobsController < ApplicationController
 
   def index
     # sets up distance location>>>>>
-    ## @jobs = policy_scope(Job)
+    @jobs = policy_scope(Job)
     ##laborer_longitude = request.location.longitude
     ##laborer_latitude = request.location.latitude //can't do on local server
-    laborer_latitude = 34.029043
-    laborer_longitude = -118.487545
-    # @jobs = Job.near([laborer_latitude, laborer_longitude], 30)
+    # l.a.
+    # laborer_latitude = 34.029043
+    # laborer_longitude = -118.487545
 
-    @jobs = Job.all
-    @job = Job.find_by(params[:id])
+       # could set up for premium users to search for laborers
+    @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], 15)
+    #
+    # @jobs = Job.all
+    # @job = Job.find_by(params[:id])
 
       #doesn't appeaer to be necessary.
     # if Laborer.present?
@@ -106,10 +109,7 @@ def create
       format.html { render :new }
       format.json { render json: @job.errors, status: :unprocessable_entity }
     end
-  end
-
-  # DELETE /jobs/1
-  # DELETE /jobs/1.json
+    end
 
 end
 

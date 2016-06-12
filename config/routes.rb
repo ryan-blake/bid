@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :jobs do
     resources :submissions
   end
+
   resources :welcomes
   # resources :submits
 
