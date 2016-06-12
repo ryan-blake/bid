@@ -53,7 +53,7 @@ class Laborer < ActiveRecord::Base
   def full_address
     [address1, address2, city, state, zipcode].join(', ')
   end
-
+# add partial to jobs that allows laborer to select radius and update zipcode for search
   def init
     self.role  ||= "standard"          #will set the default value only if it's nil
   end

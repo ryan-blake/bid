@@ -5,17 +5,38 @@ class JobsController < ApplicationController
   before_filter :login_required, unless: :pundit_user
 
   def index
-    # sets up distance location>>>>>
     @jobs = policy_scope(Job)
+    @radius = current_laborer.zipcode
     ##laborer_longitude = request.location.longitude
     ##laborer_latitude = request.location.latitude //can't do on local server
-    # l.a.
-    # laborer_latitude = 34.029043
-    # laborer_longitude = -118.487545
+     # could set up for premium users to search for laborers
+    #  doesn't reload jobs
+    if params[:category_id].blank?
+      @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
+    else
+    #  @category_id = Category.find_by(id: params[:category_id])
+     @jobs = Job.where("category_id = ?", params[:category_id])
+    end
 
-       # could set up for premium users to search for laborers
-    @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], 15)
-    #
+ # together?
+    # if params[:category_id] && params[:search]
+    #   @jobs = Job.where("category_id = ?", params[:category_id]) + Job.search(params[:search]).order("created_at DESC")
+    # elsif params[:category_id].blank? && params[:search]
+    #   Job.search(params[:search]).order("created_at DESC")
+    # elsif params[:search].blank? && params[:category_id]
+    #   @jobs =  Job.where("category_id = ?", params[:category_id])
+    # else
+    #   @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
+    # end
+
+
+    if params[:search]
+     @jobs = Job.search(params[:search]).order("created_at DESC")
+    else
+      @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
+    end
+
+
     # @jobs = Job.all
     # @job = Job.find_by(params[:id])
 
@@ -34,7 +55,6 @@ class JobsController < ApplicationController
     @submission = Submission.new
     @submissions = @job.submissions
     @client = @job.client
-
 
   end
 
@@ -58,18 +78,15 @@ class JobsController < ApplicationController
     end
   end
 
-
   # GET /jobs/new
   def new
     @job = Job.new(params[:job_params])
     @client = pundit_user
-
   end
 
   # GET /jobs/1/edit
   def edit
     @job = Job.find(params[:id])
-
     if current_laborer
       @laborer = current_laborer
     elsif current_client
@@ -77,41 +94,35 @@ class JobsController < ApplicationController
     else
       redirect_to new_laborer_session_path, notice: 'You are not logged in.'
     end
-
-
   end
 
   def destroy
     # require current_client
     @job = Job.find(params[:id])
     @Job_time = @job.time
-
     @job.destroy
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'Job was successfully destroyed.' }
       format.json { head :no_content }
     end
-
   end
 
 
 # POST /jobs
 # POST /jobs.json
-def create
-  @job = Job.new(job_params)
-  @job.client = current_client
-
-  respond_to do |format|
-    if @job.save
-      format.html { redirect_to root_url, notice: 'Job was successfully created.' }
-      format.json { render :show, status: :created, location: @job }
-    else
-      format.html { render :new }
-      format.json { render json: @job.errors, status: :unprocessable_entity }
-    end
-    end
-
-end
+  def create
+    @job = Job.new(job_params)
+    @job.client = current_client
+    respond_to do |format|
+      if @job.save
+        format.html { redirect_to root_url, notice: 'Job was successfully created.' }
+        format.json { render :show, status: :created, location: @job }
+      else
+        format.html { render :new }
+        format.json { render json: @job.errors, status: :unprocessable_entity }
+      end
+      end
+  end
 
   private
 

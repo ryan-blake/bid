@@ -30,14 +30,18 @@ class Job < ActiveRecord::Base
   has_one :selected_submission
   belongs_to :selected_submission, class_name: "Submission"
   accepts_attachments_for :images, attachment: :file, append: true
-
   default_scope { order('created_at DESC') }
-
   geocoded_by :full_address
   after_validation :geocode
 
   def full_address
     [address1, address2, city, state, zipcode].join(', ')
   end
+
+  def self.search(search)
+    where("title LIKE ? OR description LIKE ? OR category_id LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+  end
+
+
 
 end

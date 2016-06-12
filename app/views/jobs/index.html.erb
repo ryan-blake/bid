@@ -1,39 +1,44 @@
 <!-- show only XX characters from job.description fix -->
-  <%= notice %></p>
-  <h3> all jobs </h3>
+<%= notice %></p>
+<div>
+  <%= form_tag jobs_path, :controller => 'jobs', :action => 'index', :method => 'get', :id => "category_id" do %>
+  <%= collection_select( nil, :category_id, Category.all, :id, :name, { :include_blank => 'All Categories'} , { :class => 'form-control' })  %>
 
-  <% form_tag jobs_path, :method => 'get' do %>
-    <p>
-      <%= text_field_tag :search %>
-      <%= submit_tag "Search" %>
-    </p>
-  <% end %>
+ <%= form_tag(jobs_path, :method => "get", id: "search-form") do %>
+   <%= text_field_tag :search, params[:search], placeholder: "Search Jobs" %>
+   <%= submit_tag "Search", class: "form_submit" %>
+ <% end %>
+ <% end %>
+
+</div>
+<h3> all jobs </h3>
 
 
-  <% if current_laborer %>
-    <%= link_to "Get Premium Account", new_charge_path, class: 'btn btn-success' %>
-  <% end %>
-    <% if current_client %>
-      <%= link_to 'Create New Job', new_job_path %>
-    <% end %>
-  </br>
-  <p id="notice">
+
+<% if current_laborer %>
+  <%= link_to "Get Premium Account", new_charge_path, class: 'btn btn-success' %>
+<% end %>
+<% if current_client %>
+  <%= link_to 'Create New Job', new_job_path %>
+<% end %>
+</br>
+<p id="notice">
 <div class="row">
   <div class="col-md-8">
   <% @jobs.each do |job| %>
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading">
-        <% unless job.selected_submission_id %>
+       <h4 class="media-heading">
+       <% unless job.selected_submission_id %>
         <td><%= attachment_image_tag(job.images.first, :file, :fill, 80, 80) %></td>
-          <%= link_to job.title, job %>:
-          <small>
-           <%= job.description.truncate(29) %>
-          </small>
-          <small>
+        <%= link_to job.title, job %>:
+        <small>
+         <%= job.description.truncate(29) %>
+        </small>
+        <small>
           <td><%= link_to 'view', job %></td>
-          </small>
-        <% end %>
+        </small>
+       <% end %>
   <% end %>
       </div>
     </div>

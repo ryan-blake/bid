@@ -4,11 +4,11 @@
     <%= @job.title %>
     <% if @job.category %>
       <small>
-      Category: <%= @job.category.name %>
+       Category: <%= @job.category.name %>
       </small>
     <% else %>
-     <p> No Category: </p>
-     <% end %>
+      <p> No Category: </p>
+    <% end %>
   </h1>
   <h4>
     <%= @job.description %>
@@ -23,7 +23,6 @@
     </small>
   </h4>
 </div>
-
 <!---   bidding information -->
 <div>
   <br>
@@ -36,74 +35,70 @@
           <!-- if selected submission renders direct message with chosen laborer -->
           <%= link_to "Talk With #{@job.selected_submission.laborer.name}", new_message_path(to: @job.selected_submission.laborer.id) %>
         <p>
-      <% else %>
-      <!--displays current bids/submissions and laborer show view  -->
-      <strong> choose the winning bid when ready. </strong>
-      <br>
-    <table>
-      <% count = 0 %>
-      <%= form_for @job do |f| %>
-        <%= f.collection_radio_buttons(:selected_submission_id, @submissions, :id, :pretty_print) do |b| %>
-        <%= count += 1 %>:
-        <%= b.label(class: "radio_button", "data-value": b.value ) { b.radio_button(class: "radio_button") + b.text } %>
-      <% end %>
-     <br>
-   </table>
-<table>
-       <% count = 0 %>
-       <% @submissions.each do | p | %>
-       <%= count += 1 %>:
-      <tr>     <%= gravatar_for p.laborer, 45%>
-      <tr> <%= link_to p.laborer.name + "'s" + " profile" + "\n", p.laborer %>
-       <% end %>
-        <div>
+       <% else %>
+          <!--displays current bids/submissions and laborer show view  -->
+          <strong> choose the winning bid when ready. </strong>
           <br>
-        <%= f.submit 'Select Bid' %>
-        <div>
-        <%end%>
+        <table>
+          <% count = 0 %>
+          <%= form_for @job do |f| %>
+            <%= f.collection_radio_buttons(:selected_submission_id, @submissions, :id, :pretty_print) do |b| %>
+            <%= count += 1 %>:
+            <%= b.label(class: "radio_button", "data-value": b.value ) { b.radio_button(class: "radio_button") + b.text } %>
+          <% end %>
+          <br>
+        </table>
+        <table>
+         <% count = 0 %>
+         <% @submissions.each do | p | %>
+         <%= count += 1 %>:
+            <tr> <%= gravatar_for p.laborer, 45%>
+            <tr> <%= link_to p.laborer.name + "'s" + " profile" + "\n", p.laborer %>
+         <% end %>
+         <div>
+         <br>
+           <%= f.submit 'Select Bid' %>
+         <div>
       <%end%>
+    <%end%>
     <% else %>
-    <!-- shows no bids text -->
-      <b>There are no bids yet.</b>
+<!-- shows no bids text -->
+    <b>There are no bids yet.</b>
     <% end %>
-  <%else %>
+    <%else %>
     <br/>
-    <!-- displays current bids to users viewing job -->
+   <!-- displays current bids to users viewing job -->
     <ul>
     <% @submissions.each do |w| %>
       <b>$<%= w.price %>.00</b>.
     <% end %>
     </div>
   <% end %>
-
   <br>
-  
-  <!-- images array -->
-  <p>
-  <% @job.images.each do |i| %>
-    <%= attachment_image_tag(i, :file, :fill, 370, 370, format: "jpg") %>
-  <% end %>
-</p>
-
+<!-- images array -->
+   <p>
+   <% @job.images.each do |i| %>
+     <%= attachment_image_tag(i, :file, :fill, 370, 370, format: "jpg") %>
+   <% end %>
+   </p>
 <!--     client edit job parameters -->
-<div>
-  <% if @client == pundit_user %>
+   <div>
+   <% if @client == pundit_user %>
     <% if policy(@job).edit? %>
       <%= link_to "edit", edit_job_path(@job), class: "btn btn-primary" %>
       <%= link_to "Delete", @job , :method => :delete %>
     <% end %>
-  <% end %>
-</div>
-
+   <% end %>
+   </div>
 <!--    create new bid form -->
-<% unless @job.selected_submission_id %>
-<% if current_laborer %>
-  <%= form_for([@job, @submission]) do |s| %>
-    <div class="form-group">
+   <% unless @job.selected_submission_id %>
+   <% if current_laborer %>
+     <%= form_for([@job, @submission]) do |s| %>
+      <div class="form-group">
       <%= s.label :price %>
       <%= s.number_field :price %>
-    </div>
-    <%= s.submit %>
-  <% end %>
- <% end %>
+      </div>
+     <%= s.submit %>
+     <% end %>
+   <% end %>
 <% end %>
