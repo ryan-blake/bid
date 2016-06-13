@@ -1,0 +1,15 @@
+<h1> search results </h1>
+<p><%= link_to 'back', new_search_path %>
+
+  <% if @search.search_jobs.empty? %>
+    <p> no records found </p>
+    <% else %>
+     <% @search.search_jobs.each do |c| %>
+     <br>
+     <div class="div">
+       <h3><%= c.title %></h3>
+       <p><%= c.description.truncate(29) %></p>
+       <p> cat: <%= c.category.name %> </p>
+     </div>
+    <% end %>
+  <% end %>

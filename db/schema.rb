@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608142322) do
+ActiveRecord::Schema.define(version: 20160613165208) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -183,6 +183,16 @@ ActiveRecord::Schema.define(version: 20160608142322) do
   end
 
   add_index "reviews", ["laborer_id"], name: "index_reviews_on_laborer_id"
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "keywords"
+    t.string   "category"
+    t.integer  "min_price"
+    t.integer  "max_price"
+    t.integer  "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "selected_submissions", force: :cascade do |t|
     t.datetime "created_at", null: false

@@ -5,18 +5,18 @@ class JobsController < ApplicationController
   before_filter :login_required, unless: :pundit_user
 
   def index
-    @jobs = policy_scope(Job)
-    @radius = current_laborer.zipcode
-    ##laborer_longitude = request.location.longitude
-    ##laborer_latitude = request.location.latitude //can't do on local server
-     # could set up for premium users to search for laborers
-    #  doesn't reload jobs
-    if params[:category_id].blank?
-      @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
-    else
-    #  @category_id = Category.find_by(id: params[:category_id])
-     @jobs = Job.where("category_id = ?", params[:category_id])
-    end
+    # @jobs = policy_scope(Job)
+    # @radius = current_laborer.zipcode
+    # ##laborer_longitude = request.location.longitude
+    # ##laborer_latitude = request.location.latitude //can't do on local server
+    #  # could set up for premium users to search for laborers
+    # #  doesn't reload jobs
+    # if params[:category_id].blank?
+    #   @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
+    # else
+    # #  @category_id = Category.find_by(id: params[:category_id])
+    #  @jobs = Job.where("category_id = ?", params[:category_id])
+  # end
 
  # together?
     # if params[:category_id] && params[:search]
@@ -28,6 +28,7 @@ class JobsController < ApplicationController
     # else
     #   @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
     # end
+
 
 
     if params[:search]

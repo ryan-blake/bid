@@ -1,5 +1,7 @@
 <!-- show only XX characters from job.description fix -->
 <%= notice %></p>
+
+<%= link_to "Avanced search", new_search_path %>
 <div>
   <%= form_tag jobs_path, :controller => 'jobs', :action => 'index', :method => 'get', :id => "category_id" do %>
   <%= collection_select( nil, :category_id, Category.all, :id, :name, { :include_blank => 'All Categories'} , { :class => 'form-control' })  %>
