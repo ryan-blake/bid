@@ -15,8 +15,11 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  resources :jobs do
-    resources :submissions
+resources :jobs do
+      resources :submissions
+      collection do
+        get 'search'
+      end
   end
 
   resources :welcomes
