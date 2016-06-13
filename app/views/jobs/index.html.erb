@@ -12,7 +12,7 @@
 </div> -->
 
 <%= form_tag({controller: :jobs, action: :search}, {method: :get}) do  %>
-  <%= select_tag :category_id  %>
+<%= collection_select( nil, :category_id, Category.all, :id, :name, { :include_blank => 'All Categories'} , { :class => 'form-control' })  %>
   <%= text_field_tag :keyword  %>
   <%= submit_tag "search" %>
 <% end %>
