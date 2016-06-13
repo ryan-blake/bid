@@ -7,6 +7,7 @@ class JobsController < ApplicationController
   def index
     @jobs = policy_scope(Job)
     @radius = pundit_user.zipcode
+    @jobs = Job.all
     ##laborer_longitude = request.location.longitude
     ##laborer_latitude = request.location.latitude //can't do on local server
      # could set up for premium users to search for laborers
@@ -21,18 +22,19 @@ class JobsController < ApplicationController
     #   @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
     # end
 
-    if params[:category_id].blank?
-      @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
-    else
-    #  @category_id = Category.find_by(id: params[:category_id])
-     @jobs = Job.where("category_id = ?", params[:category_id])
-    end
-
-    if params[:search]
-     @jobs = Job.search(params[:search]).order("created_at DESC")
-    else
-      @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
-    end
+# working individually
+    # if params[:category_id].blank?
+    #   @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
+    # else
+    # #  @category_id = Category.find_by(id: params[:category_id])
+    #  @jobs = Job.where("category_id = ?", params[:category_id])
+    # end
+    #
+    # if params[:search]
+    #  @jobs = Job.search(params[:search]).order("created_at DESC")
+    # else
+    #   @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
+    # end
 
 
     # @jobs = Job.all
@@ -47,17 +49,14 @@ class JobsController < ApplicationController
   end
 
   def show
-
     @job = Job.find(params[:id])
     @laborer = @job.laborer_id
     @submission = Submission.new
     @submissions = @job.submissions
     @client = @job.client
-
   end
 
   def update
-
     @job = Job.find(params[:id])
     if !params[:job]
       flash[:error] = "You didn't select a bid!"
@@ -105,7 +104,6 @@ class JobsController < ApplicationController
     end
   end
 
-
 # POST /jobs
 # POST /jobs.json
   def create
@@ -119,8 +117,14 @@ class JobsController < ApplicationController
         format.html { render :new }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
-      end
+    end
   end
+
+  def search
+  @jobs = Job.where("category_id like ? and (title like ? or description like ?)",
+                            "%#{params[:category_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
+  render :index
+end
 
   private
 

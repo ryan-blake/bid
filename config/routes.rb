@@ -17,11 +17,13 @@ Rails.application.routes.draw do
 
   resources :jobs do
     resources :submissions
+    collection do
+      get 'search'
+    end
   end
 
   resources :welcomes
   # resources :submits
-
   #mailers
   get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
   get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent

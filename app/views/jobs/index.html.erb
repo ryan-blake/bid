@@ -1,6 +1,6 @@
 <!-- show only XX characters from job.description fix -->
 <%= notice %></p>
-<div>
+<!-- <div>
   <%= form_tag jobs_path, :controller => 'jobs', :action => 'index', :method => 'get', :id => "category_id" do %>
   <%= collection_select( nil, :category_id, Category.all, :id, :name, { :include_blank => 'All Categories'} , { :class => 'form-control' })  %>
 
@@ -9,8 +9,13 @@
    <%= submit_tag "Search", class: "form_submit" %>
  <% end %>
  <% end %>
+</div> -->
 
-</div>
+<%= form_tag({controller: :jobs, action: :search}, {method: :get}) do  %>
+  <%= select_tag :category_id  %>
+  <%= text_field_tag :keyword  %>
+  <%= submit_tag "search" %>
+<% end %>
 <h3> all jobs </h3>
 
 
