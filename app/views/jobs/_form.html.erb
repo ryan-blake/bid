@@ -58,14 +58,16 @@
  </div>
 
  <div class="field">
-     <%= f.label :images_files %><br>
-     <%= f.attachment_field :images_files, multiple: true, presigned: true, direct: true %>
-     <table>
-       <% @job.images.each do |i| %>
-         <%= attachment_image_tag(i, :file, :fill, 370, 370, format: "jpg") %>
-       <% end %>
-      <br>
-    </table>
+    <%= f.label :images_files %><br>
+    <%= f.attachment_field :images_files, multiple: true, presigned: true, direct: true %>
+
+    <%= f.fields_for :images do |image_fields| %>
+      <%= attachment_image_tag(image_fields.object, :file, :fill, 370, 370, format: "jpg") %>
+
+      <%= image_fields.check_box :_destroy %>
+      <%= image_fields.label :_destroy %>
+    <% end %>
+    <br>
  </div>
 
 <br>

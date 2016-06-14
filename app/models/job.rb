@@ -19,6 +19,7 @@
 #  city                   :string
 #  state                  :string
 #  zipcode                :integer
+#  file_id                :string
 #
 
 class Job < ActiveRecord::Base
@@ -29,7 +30,10 @@ class Job < ActiveRecord::Base
   has_many :images, dependent: :destroy
   has_one :selected_submission
   belongs_to :selected_submission, class_name: "Submission"
+
   accepts_attachments_for :images, attachment: :file, append: true
+  accepts_nested_attributes_for :images, allow_destroy: true
+
   default_scope { order('created_at DESC') }
   geocoded_by :full_address
   after_validation :geocode
@@ -41,7 +45,5 @@ class Job < ActiveRecord::Base
   def self.search(search)
     where("title LIKE ? OR description LIKE ? OR category_id LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   end
-
-
 
 end

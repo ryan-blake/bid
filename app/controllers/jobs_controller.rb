@@ -11,41 +11,7 @@ class JobsController < ApplicationController
     ##laborer_longitude = request.location.longitude
     ##laborer_latitude = request.location.latitude //can't do on local server
      # could set up for premium users to search for laborers
- # together?
-    # if params[:category_id] && params[:search]
-    #   @jobs = Job.where("category_id = ?", params[:category_id]) + Job.search(params[:search]).order("created_at DESC")
-    # elsif params[:category_id].blank? && params[:search]
-    #   Job.search(params[:search]).order("created_at DESC")
-    # elsif params[:search].blank? && params[:category_id]
-    #   @jobs =  Job.where("category_id = ?", params[:category_id])
-    # else
-    #   @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
-    # end
-
-# working individually
-    # if params[:category_id].blank?
-    #   @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
-    # else
-    # #  @category_id = Category.find_by(id: params[:category_id])
-    #  @jobs = Job.where("category_id = ?", params[:category_id])
-    # end
-    #
-    # if params[:search]
-    #  @jobs = Job.search(params[:search]).order("created_at DESC")
-    # else
-    #   @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
-    # end
-
-
-    # @jobs = Job.all
-    # @job = Job.find_by(params[:id])
-
-      #doesn't appeaer to be necessary.
-    # if Laborer.present?
-    #   def show_bid_form
-    #     render :partial=>"submit/form"
-    #   end
-    # end
+     #   @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
   end
 
   def show
@@ -63,9 +29,9 @@ class JobsController < ApplicationController
       redirect_to [@job]
       return
     end
-    @job.assign_attributes(job_params)
 
-    if @job.save
+
+    if @job.update_attributes(job_params)
       flash[:notice] = "Job was updated."
       # #37
       redirect_to [@job]
@@ -140,6 +106,6 @@ end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def job_params
-    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price, :current_client, :selected_submission_id, :address1, :address2, :city, :state, :zipcode, :time, images_files: [])
+    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price, :current_client, :selected_submission_id, :address1, :address2, :city, :state, :zipcode, :time, images_files: [], images_attributes: [ :id, :file, :_destroy])
   end
 end
