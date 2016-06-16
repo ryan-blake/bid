@@ -27,7 +27,7 @@ l.save!
   email:   Faker::Internet.email,
   name:     Faker::Name.name,
   password: "testtest",
-  role: 1,
+  role: 0,
   zipcode: 76244
     )
   client.skip_confirmation!
@@ -39,7 +39,7 @@ end
   email:   Faker::Internet.email,
   name:     Faker::Name.name,
   password: "testtest",
-  role: 1,
+  role: 0,
   zipcode: 76262
     )
   client.skip_confirmation!
@@ -55,7 +55,7 @@ clients = Client.all
   name:     Faker::Name.name,
   password: "testtest",
   about:    Faker::Lorem.sentence,
-  role: 1,
+  role: 0,
   zipcode: 76244
   )
   laborer.skip_confirmation!
@@ -68,7 +68,7 @@ end
   name:     Faker::Name.name,
   password: "testtest",
   about:    Faker::Lorem.sentence,
-  role: 1,
+  role: 0,
   zipcode: 76262
   )
   laborer.skip_confirmation!
@@ -89,7 +89,7 @@ laborers = Laborer.all
 end
   reviews = Review.all
 
-  category_array = %w(Mulch Trees Mowing Garden Rocks Grass)
+  category_array = %w(Mulch Trees Mowing Garden Rocks Grass Trimming)
 
   category_array.each do |c|
     Category.find_or_create_by(

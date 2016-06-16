@@ -1,32 +1,19 @@
 <!-- show only XX characters from job.description fix -->
 <%= notice %></p>
-<!-- <div>
-  <%= form_tag jobs_path, :controller => 'jobs', :action => 'index', :method => 'get', :id => "category_id" do %>
-  <%= collection_select( nil, :category_id, Category.all, :id, :name, { :include_blank => 'All Categories'} , { :class => 'form-control' })  %>
-
- <%= form_tag(jobs_path, :method => "get", id: "search-form") do %>
-   <%= text_field_tag :search, params[:search], placeholder: "Search Jobs" %>
-   <%= submit_tag "Search", class: "form_submit" %>
- <% end %>
- <% end %>
-</div> -->
 
 <%= form_tag({controller: :jobs, action: :search}, {method: :get}) do  %>
 <%= collection_select( nil, :category_id, Category.all, :id, :name, { :include_blank => 'All Categories'} , { :class => 'form-control' })  %>
   <%= text_field_tag :keyword  %>
   <%= submit_tag "search" %>
 <% end %>
-<h3> all jobs </h3>
-
-
-
-<% if current_laborer %>
-  <%= link_to "Get Premium Account", new_charge_path, class: 'btn btn-success' %>
+<hr>
+<h3> Available Jobs </h3><% if current_laborer.role == 'standard'%> <h5> to receive more bid credits.
+  <%= link_to "Get Premium Account", new_charge_path, class: 'btn btn-success' %> </h5>
 <% end %>
 <% if current_client %>
   <%= link_to 'Create New Job', new_job_path %>
 <% end %>
-</br>
+<hr>
 <p id="notice">
 <div class="row">
   <div class="col-md-8">
@@ -43,10 +30,9 @@
         <small>
           <td><%= link_to 'view', job %></td>
         </small>
-       <% end %>
-  <% end %>
+        <% end %>
+   <% end %>
       </div>
     </div>
   </div>
 </div>
-<body>

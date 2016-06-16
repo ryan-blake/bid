@@ -5,9 +5,10 @@ class JobsController < ApplicationController
   before_filter :login_required, unless: :pundit_user
 
   def index
-    @jobs = policy_scope(Job)
+    # @jobs = policy_scope(Job)
     @radius = pundit_user.zipcode
     @jobs = Job.all
+    @c_user = pundit_user
     ##laborer_longitude = request.location.longitude
     ##laborer_latitude = request.location.latitude //can't do on local server
      # could set up for premium users to search for laborers
@@ -45,6 +46,7 @@ class JobsController < ApplicationController
   def new
     @job = Job.new(params[:job_params])
     @client = pundit_user
+    @job.category = Category.new
   end
 
   # GET /jobs/1/edit
@@ -88,7 +90,7 @@ class JobsController < ApplicationController
 
   def search
   @jobs = Job.where("category_id like ? and (title like ? or description like ?)",
-                            "%#{params[:category_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
+            "%#{params[:category_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
   render :index
 end
 
@@ -106,6 +108,6 @@ end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def job_params
-    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price, :current_client, :selected_submission_id, :address1, :address2, :city, :state, :zipcode, :time, images_files: [], images_attributes: [ :id, :file, :_destroy])
+    params.require(:job).permit(:title, :name, :description, :laborer, :category_id, :price, :current_client, :selected_submission_id, :address1, :address2, :city, :state, :zipcode, :time, images_files: [], images_attributes: [ :id, :file, :_destroy], categories_attributes: [ :name ])
   end
 end

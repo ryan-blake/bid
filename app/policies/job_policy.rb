@@ -37,7 +37,6 @@ class JobPolicy < ApplicationPolicy
       elsif client.role == 'premium'
         all_jobs = scope.all
         all_jobs.each do |job|
-          if job.public? || job.owner == client || job.collaborators.include?(client)
             jobs << job # if the client is premium, only show them public jobs, or that private jobs they created, or private jobs they are a collaborator on
           end
         end
@@ -45,7 +44,7 @@ class JobPolicy < ApplicationPolicy
         all_jobs = scope.all
         jobs = []
         all_jobs.each do |job|
-          if job.public? || job.collaborators.include?(client)
+          if job
             jobs << job # only show standard clients public jobs and private jobs they are a collaborator on
           end
         end
@@ -53,6 +52,3 @@ class JobPolicy < ApplicationPolicy
       jobs # return the jobs array we've built up
     end
   end
-
-
-end

@@ -2,7 +2,6 @@
   <% if job.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
-
       <ul>
       <% job.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -56,16 +55,15 @@
    <%= f.label :time %><br/>
   <%= f.number_field :time %>
  </div>
-
+<br>
  <div class="field">
-    <%= f.label :images_files %><br>
+    <%= f.label :Add_Images %><br>
     <%= f.attachment_field :images_files, multiple: true, presigned: true, direct: true %>
 
     <%= f.fields_for :images do |image_fields| %>
-      <%= attachment_image_tag(image_fields.object, :file, :fill, 370, 370, format: "jpg") %>
-
-      <%= image_fields.check_box :_destroy %>
-      <%= image_fields.label :_destroy %>
+    <%= image_fields.check_box :_destroy %>
+    <%= image_fields.label :x %>
+      <%= attachment_image_tag(image_fields.object, :file, :fill, 250, 250, format: "jpg") %>
     <% end %>
     <br>
  </div>
