@@ -69,7 +69,6 @@ class JobsController < ApplicationController
       format.html { redirect_to root_url, notice: 'Job was successfully destroyed.' }
       format.json { head :no_content }
     end
-    @Job_time = @job.time
   end
 
 # POST /jobs
