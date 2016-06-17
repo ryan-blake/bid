@@ -84,7 +84,6 @@
 <!--     client edit job parameters -->
    <div>
    <% if @client == pundit_user %>
-    <% if policy(@job).edit? %>
       <%= link_to "edit", edit_job_path(@job), class: "btn btn-primary" %>
       <%= link_to "Delete", @job , :method => :delete %>
     <% end %>
