@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617213551) do
+ActiveRecord::Schema.define(version: 20160617224729) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -50,6 +50,12 @@ ActiveRecord::Schema.define(version: 20160617213551) do
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true
   add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
 
+  create_table "distances", force: :cascade do |t|
+    t.integer  "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.string   "file_id"
     t.integer  "job_id"
@@ -78,10 +84,13 @@ ActiveRecord::Schema.define(version: 20160617213551) do
     t.integer  "zipcode"
     t.string   "file_id"
     t.integer  "profession_id"
+    t.integer  "distance_id"
+    t.integer  "job_id"
   end
 
   add_index "jobs", ["category_id"], name: "index_jobs_on_category_id"
   add_index "jobs", ["client_id"], name: "index_jobs_on_client_id"
+  add_index "jobs", ["job_id"], name: "index_jobs_on_job_id"
   add_index "jobs", ["laborer_id"], name: "index_jobs_on_laborer_id"
   add_index "jobs", ["selected_submission_id"], name: "index_jobs_on_selected_submission_id"
 

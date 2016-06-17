@@ -88,9 +88,12 @@ class JobsController < ApplicationController
   end
 
   def search
+    distance_in_miles = params[:value].to_i
   @jobs = Job.where("category_id like ? and (title like ? or description like ?)",
-            "%#{params[:category_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
+            "%#{params[:category_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%") \
+             .near([pundit_user.latitude, pundit_user.longitude], distance_in_miles)
   render :index
+
 end
 
   private

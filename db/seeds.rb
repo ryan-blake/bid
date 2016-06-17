@@ -89,6 +89,16 @@ laborers = Laborer.all
 end
   reviews = Review.all
 
+
+    distance_array = %w(10 20 30 40 50 60 70)
+
+    distance_array.each do |c|
+      Distance.find_or_create_by(
+        value: c
+      )
+    end
+    distances = Distance.all
+
   category_array = %w(Mulch Trees Mowing Garden Rocks Grass Trimming)
 
   category_array.each do |c|
@@ -162,3 +172,4 @@ puts "#{Submission.count} submits created"
 puts "#{Job.count}  jobs created"
 puts "#{Review.count} reviews created"
 puts "#{Profession.count} professions created"
+puts "#{Distance.count} distances created"
