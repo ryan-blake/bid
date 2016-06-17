@@ -7,7 +7,7 @@
   <%= submit_tag "search" %>
 <% end %>
 <hr>
-<h3> Available Jobs </h3><% if current_laborer.role == 'standard'%> <h5> to receive more bid credits.
+<h3> Available Jobs </h3><% if pundit_user.role == 'standard'%> <h5> to receive more bid credits.
   <%= link_to "Get Premium Account", new_charge_path, class: 'btn btn-success' %> </h5>
 <% end %>
 <% if current_client %>
