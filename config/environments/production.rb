@@ -92,7 +92,7 @@ Rails.application.configure do
   password: ENV["SENDGRID_PASSWORD"]
   }
 
-  require "refile/s3"
+  # require "refile/s3"
 
 
 
@@ -106,7 +106,7 @@ Rails.application.configure do
   # Refile.backends["images_files_backend"] = Refile::S3.new(prefix: "store/images_files", **aws)
   # Refile.cache = Refile::S3.new(max_size: 5.megabytes, prefix: "cache", **aws)
 
-  config.action_controller.asset_host = 'd3i71dcp5fkggo.cloudfront.net'
+  # config.action_controller.asset_host = 'd3i71dcp5fkggo.cloudfront.net'
 
 
 

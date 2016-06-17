@@ -85,7 +85,9 @@
    <div>
    <% if @client == pundit_user %>
       <%= link_to "edit", edit_job_path(@job), class: "btn btn-primary" %>
-      <%= link_to "Delete", @job , :method => :delete, class: "btn" %>
+      <%= button_to "delete", @job, :method=>:delete, :class=>:destroy %>
+
+      <!-- <%= link_to "Delete", @job , :method => :delete, class: "btn" %> -->
    <% end %>
    </div>
 <!--    create new bid form -->
