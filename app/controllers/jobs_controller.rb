@@ -64,12 +64,12 @@ class JobsController < ApplicationController
   def destroy
     # require current_client
     @job = Job.find(params[:id])
-    @Job_time = @job.time
     @job.destroy
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'Job was successfully destroyed.' }
       format.json { head :no_content }
     end
+    @Job_time = @job.time
   end
 
 # POST /jobs
