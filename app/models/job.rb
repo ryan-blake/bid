@@ -20,6 +20,8 @@
 #  state                  :string
 #  zipcode                :integer
 #  file_id                :string
+#  profession             :string
+#  job_id                 :integer
 #
 
 # if Job.profession == lawn
@@ -32,6 +34,7 @@ class Job < ActiveRecord::Base
   belongs_to :laborer
   belongs_to :client
   belongs_to :category
+  belongs_to :profession
 
   has_one :selected_submission
   has_many :submissions

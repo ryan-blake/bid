@@ -4,11 +4,12 @@
   <%= submit_tag "search" %>
 <% end %>
 <hr>
-<h3> Available Jobs </h3><% if pundit_user.role == 'standard'%> <h5> to receive more bid credits.
+<% if pundit_user.role == 'standard'%> <h5> to receive more bid credits.
   <%= link_to "Get Premium Account", new_charge_path, class: 'btn btn-success' %> </h5>
 <% end %>
 <% if current_client %>
-  <%= link_to 'Create New Job', new_job_path %>
+<%= render partial: 'profession', locals: {job: @job} %>
+  <!-- <%= link_to 'Create New Job', new_job_path %> -->
 <% end %>
 <hr>
 <p id="notice">
@@ -22,7 +23,10 @@
         <td><%= attachment_image_tag(job.images.first, :file, :fill, 80, 80) %></td>
         <%= link_to job.title, job %>:
         <small>
-         <%= job.description.truncate(29) %>
+         <%= job.description %>
+         <% if job.profession %>
+         <%= job.profession.title %>
+         <% end %>
         </small>
         <small>
           <td><%= link_to 'view', job %></td>

@@ -20,6 +20,8 @@
 #  state                  :string
 #  zipcode                :integer
 #  file_id                :string
+#  profession             :string
+#  job_id                 :integer
 #
 
 require 'rails_helper'

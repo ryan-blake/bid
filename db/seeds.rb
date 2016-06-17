@@ -98,6 +98,15 @@ end
   end
   categories = Category.all
 
+  profession_array = %w(Lawncare Homecare)
+
+  profession_array.each do |c|
+    Profession.find_or_create_by(
+    title: c
+    )
+end
+ professions = Profession.all
+
 # Creates jobs
 10.times do
   Job.create!(
@@ -152,3 +161,4 @@ puts "#{Laborer.count}  laborers created"
 puts "#{Submission.count} submits created"
 puts "#{Job.count}  jobs created"
 puts "#{Review.count} reviews created"
+puts "#{Profession.count} professions created"

@@ -12,6 +12,9 @@
   </h1>
   <h4>
     <%= @job.description %>
+    <% if @job.profession %>
+    :: <%= @job.profession.title %>
+    <% end %>
     <small>
     <br>
       submitted <%= time_ago_in_words(@job.created_at) %> ago by <%= link_to @job.client.name, client_path(@job.client) %>
@@ -86,6 +89,7 @@
    <% if @client == pundit_user %>
       <%= link_to "edit", edit_job_path(@job), class: "btn btn-primary" %>
       <%= button_to "delete", @job, :method=>:delete, :class=>:destroy %>
+
    <% end %>
    </div>
 <!--    create new bid form -->
