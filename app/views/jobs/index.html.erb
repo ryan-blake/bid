@@ -1,6 +1,6 @@
 <%= form_tag({controller: :jobs, action: :search}, {method: :get}) do  %>
-<%= collection_select( nil, :category_id, Category.all, :id, :name, { :include_blank => 'All Categories'} , { :class => 'form-control' })  %>
-<%= collection_select( nil, :value, Distance.all, :value, :value, { :include_blank => 'All radii'} , { :class => 'form-control' })  %>
+  <%= collection_select( nil, :value, Distance.all, :value, :value, { :include_blank => 'Distance in Miles' } , { :class => 'form-control' })  %>
+  <%= collection_select( nil, :category_id, Category.all, :id, :name, { :include_blank => 'All Categories'} , { :class => 'form-control' })  %>
   <%= text_field_tag :keyword  %>
   <%= submit_tag "search" %>
 <% end %>
@@ -9,24 +9,31 @@
   <%= link_to "Get Premium Account", new_charge_path, class: 'btn btn-success' %> </h5>
 <% end %>
 <% if current_client %>
-<%= render partial: 'profession', locals: {job: @job} %>
+  <%= render partial: 'profession', locals: {job: @job} %>
   <!-- <%= link_to 'Create New Job', new_job_path %> -->
 <% end %>
 <hr>
 <p id="notice">
 <div class="row">
   <div class="col-md-8">
+    <% count = 0 %>
+
   <% @jobs.each do |job| %>
     <div class="media">
       <div class="media-body">
        <h4 class="media-heading">
        <% unless job.selected_submission_id %>
-        <td><%= attachment_image_tag(job.images.first, :file, :fill, 80, 80) %></td>
-        <%= link_to job.title, job %>:
-        <small>
+          <%  count+= 1 %>
+          <%= count %>
+
+         <td><%= attachment_image_tag(job.images.first, :file, :fill, 80, 80) %></td>
+         <%= link_to job.title, job %>:
+
+         <small>
+
          <%= job.description %>
          <% if job.profession %>
-         <%= job.profession.title %>
+           <%= job.profession.title %>
          <% end %>
         </small>
         <small>

@@ -6,13 +6,8 @@ class JobsController < ApplicationController
 
   def index
     # @jobs = policy_scope(Job)
-    @radius = pundit_user.zipcode
     @jobs = Job.all
     @c_user = pundit_user
-    ##laborer_longitude = request.location.longitude
-    ##laborer_latitude = request.location.latitude //can't do on local server
-     # could set up for premium users to search for laborers
-     #   @jobs = Job.near([pundit_user.latitude, pundit_user.longitude], @radius )
   end
 
   def show
@@ -88,7 +83,11 @@ class JobsController < ApplicationController
   end
 
   def search
+    if params[:value].to_i < 0
     distance_in_miles = params[:value].to_i
+    else
+      distance_in_miles = 2000
+    end
   @jobs = Job.where("category_id like ? and (title like ? or description like ?)",
             "%#{params[:category_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%") \
              .near([pundit_user.latitude, pundit_user.longitude], distance_in_miles)
