@@ -88,7 +88,11 @@ class JobsController < ApplicationController
   end
 
   def search
+    if params[:value].to_i < 1
+      distance_in_miles = 2000
+    else
     distance_in_miles = params[:value].to_i
+  end
   @jobs = Job.where("category_id like ? and (title like ? or description like ?)",
             "%#{params[:category_id]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%") \
              .near([pundit_user.latitude, pundit_user.longitude], distance_in_miles)

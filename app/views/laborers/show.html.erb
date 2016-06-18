@@ -1,101 +1,1 @@
-<div class="row">
-<% if current_laborer == @laborer %>
-  <!-- displays open jobs -->
-  <strong> Won Jobs:</strong>
-  <% Job.all.each do |j| %>
-   <% unless j.selected_submission_id == nil  %>
-    <% j.submissions.each do |s| %>
-     <%if s.laborer_id == @laborer.id %>
-      <%= @seljob = link_to j.title.capitalize, j %>.
-     <% end %>
-    <% end %>
-  <% end %>
- <% end %>
-
-  <br>
-  <strong> Open Jobs: </strong>
-  <% Job.all.each do |j| %>
-   <% if j.selected_submission_id == nil  %>
-    <% j.submissions.each do |s| %>
-     <%if s.laborer_id == @laborer.id %>
-      <%= @openjob = link_to j.title.capitalize, j %>
-     <% end %>
-    <% end %>
-   <% end %>
-  <% end %>
-  <br>
-  <strong> out bid Jobs: </strong>
-  <!-- find if > price == @laborer to print job fix -->
-  <% Job.all.each do |j| %>
-   <% if j.selected_submission_id == nil  %>
-    <% j.submissions.each do |s| %>
-     <%if s.laborer_id == @laborer.id %>
-  <!-- print highest current bid by client if jobs highest bid != @laborer -->
-    $<%=  s.price  %>
-      <%= @openjob = link_to j.title.capitalize, j %>
-     <% end %>
-    <% end %>
-   <% end %>
-  <% end %>
-
-<% end %>
-
-
-<div class="row">
-  <div class="col-md-8">
-  <h1><%= @laborer.name %></h1>
-    <div class="media">
-      <div class="media-body">
-      <h4 class="media-heading">
-          About: <%= @laborer.about %>
-      </h4>
-        <small>
-          contact: <%= @laborer.email %>
-        </small>
-      <br>
-          Average Rating:
-        <% @laborer.reviews.average(:rating).to_i.times do %>
-          <%= image_tag "Star.png", :size => "25x25" %>
-        <% end %>
-        <br>
-
-        <% unless pundit_user == @laborer %>
-             <%= link_to 'Send message', new_message_path(to: @laborer), class: 'btn btn-default btn-sm' %>
-        <% end %>      </br>
-    </div>
-  </div>
- </div>
-</div>
-
-
-<div class="row">
-  <div class="col-md-8">
-    <div class="media">
-      <div class="media-body-1">
-        <h3>Reviews </h3>
-        <% @laborer.reviews.each do |review| %>
-          <Li><b> <%= review.title %> </b></li>
-            by <%= review.author %>,  <%= time_ago_in_words(review.created_at)%> ago
-            <br/>
-            <%= review.content %>
-            <br/>
-        <b>User Rating:</b>
-        <% review.rating.times do  %>
-        <%= image_tag "Star.png", :size => "25x25"%>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
- </div>
-</div>
-
-<br>
- <% if current_client %>
-   <h4> Create Review: </h4>
-   <%= render partial: 'form' %>
- <% end %>
-
-
-<p id="notice"><%= notice %></p>
-<%= link_to 'edit', edit_laborer_registration_path(@laborer) %>
-<%= link_to 'home', root_path %>
+<div class="row"><% if current_laborer == @laborer %>  <!-- displays open jobs -->  <strong> Won Jobs:</strong>  <% text = "" %>  <% Job.all.each do |j| %>   <% unless j.selected_submission_id == nil  %>    <% j.submissions.each do |s| %>     <%if s.laborer_id == @laborer.id  %>     <%= link_to j.title.capitalize, j%>      <% j.title = text %>      <%= text %>    <% end %>   <% end %>  <% end %><% end %>  <br>  <strong> Open Jobs: </strong>  <% this = "" %>  <% Job.all.each do |j| %>   <% if j.selected_submission_id == nil  %>    <% j.submissions.each do |s| %>     <%if s.laborer_id == @laborer.id %><%= link_to j.title.capitalize, j %>      <% j.title = text %>      <% text %>     <% end %>    <% end %>   <% end %>  <% end %>  <br>  <strong> out bid Jobs: </strong>  <!-- find if > price == @laborer to print job fix -->  <% text = "" %>  <% high = [] %>  <% Job.all.each do |j| %>   <% if j.selected_submission_id == nil  && j.submissions.length > 1%>    <% j.submissions.each do |s| %>  <%= @openjob = link_to j.title.capitalize, j %>    $<%=s.price %> job <%= s.job_id  %> <%= s.laborer.name%>      <% j.title = text %>      <% text %>     <% end %>   <% end %>  <% end %><% end %><div class="row">  <div class="col-md-8">  <h1><%= @laborer.name %></h1>    <div class="media">      <div class="media-body">      <h4 class="media-heading">          About: <%= @laborer.about %>      </h4>        <small>          contact: <%= @laborer.email %>        </small>      <br>          Average Rating:        <% @laborer.reviews.average(:rating).to_i.times do %>          <%= image_tag "Star.png", :size => "25x25" %>        <% end %>        <br>        <% unless pundit_user == @laborer %>             <%= link_to 'Send message', new_message_path(to: @laborer), class: 'btn btn-default btn-sm' %>        <% end %>      </br>    </div>  </div> </div></div><div class="row">  <div class="col-md-8">    <div class="media">      <div class="media-body-1">        <h3>Reviews </h3>        <% @laborer.reviews.each do |review| %>          <Li><b> <%= review.title %> </b></li>            by <%= review.author %>,  <%= time_ago_in_words(review.created_at)%> ago            <br/>            <%= review.content %>            <br/>        <b>User Rating:</b>        <% review.rating.times do  %>        <%= image_tag "Star.png", :size => "25x25"%>        <% end %>      <% end %>    </div>  </div> </div></div><br> <% if current_client %>   <h4> Create Review: </h4>   <%= render partial: 'form' %> <% end %><p id="notice"><%= notice %></p><%= link_to 'edit', edit_laborer_registration_path(@laborer) %><%= link_to 'home', root_path %>

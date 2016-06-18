@@ -57,11 +57,11 @@
          <%= count += 1 %>:
             <tr> <%= gravatar_for p.laborer, 45%>
             <tr> <%= link_to p.laborer.name + "'s" + " profile" + "\n", p.laborer %>
+         <%end%>
          <div>
-         <br>
-           <%= f.submit 'Select Bid' %>
-         <div>
-      <%end%>
+           <br>
+           <%= f.submit 'Confirm Bid' %>
+         </div>
       <% end %>
 
     <%end%>
@@ -74,7 +74,10 @@
    <!-- displays current bids to users viewing job -->
     <ul>
     <% @submissions.each do |w| %>
-      <b>$<%= w.price %>.00</b>.
+      <% if w.laborer == current_laborer   %>
+         your bid of
+       <% end %>
+       <b>$<%= w.price %>.00</b>.
     <% end %>
     </div>
   <% end %>
