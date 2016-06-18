@@ -2,10 +2,10 @@
 
   <div class="form-group">
     <%= f.label :Select_Expertise %>
-    <%= f.collection_select :profession_id, Profession.all, :id, :title, class: 'form-control' %>
+    <%= f.collection_select :id , Profession.all, :id, :title, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= f.submit class: "btn btn-success"%>
+    <%= f.submit class: "btn btn-primary"%>
   </div>
 <% end %>

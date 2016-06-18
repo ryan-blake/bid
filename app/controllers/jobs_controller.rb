@@ -5,6 +5,7 @@ class JobsController < ApplicationController
   before_filter :login_required, unless: :pundit_user
 
   def index
+
     # @jobs = policy_scope(Job)
     @radius = pundit_user.zipcode
     @jobs = Job.all

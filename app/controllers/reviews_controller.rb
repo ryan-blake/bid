@@ -26,11 +26,7 @@ class ReviewsController < ApplicationController
   def create
     @laborer = Laborer.find(params[:laborer_id])
     @review = @laborer.reviews.create(review_params)
-
-
-
     redirect_to laborer_path(@laborer)
-
   end
 
 # PATCH/PUT /reviews/1
@@ -59,12 +55,12 @@ end
 
 private
 # Use callbacks to share common setup or constraints between actions.
-def set_review
-  @review = Review.find(params[:id])
-end
+  def set_review
+    @review = Review.find(params[:id])
+  end
 
 # Never trust parameters from the scary internet, only allow the white list through.
-def review_params
-  params.require(:review).permit(:title, :author, :content, :rating, :laborer_id)
-end
+  def review_params
+    params.require(:review).permit(:title, :author, :content, :rating, :laborer_id)
+  end
 end
