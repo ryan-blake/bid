@@ -57,12 +57,13 @@
          <%= count += 1 %>:
             <tr> <%= gravatar_for p.laborer, 45%>
             <tr> <%= link_to p.laborer.name + "'s" + " profile" + "\n", p.laborer %>
-         <% end %>
          <div>
          <br>
            <%= f.submit 'Select Bid' %>
          <div>
       <%end%>
+      <% end %>
+
     <%end%>
     <% else %>
 <!-- shows no bids text -->
