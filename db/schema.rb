@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617224729) do
+ActiveRecord::Schema.define(version: 20160619004309) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -45,6 +45,10 @@ ActiveRecord::Schema.define(version: 20160617224729) do
     t.integer  "zipcode"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "stripe_id"
+    t.string   "stripe_access_key"
+    t.string   "stripe_publishable_key"
+    t.string   "stripe_refresh_token"
   end
 
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true
@@ -121,6 +125,10 @@ ActiveRecord::Schema.define(version: 20160617224729) do
     t.string   "city"
     t.string   "state"
     t.integer  "zipcode"
+    t.string   "stripe_id"
+    t.string   "stripe_access_key"
+    t.string   "stripe_publishable_key"
+    t.string   "stripe_refresh_token"
   end
 
   add_index "laborers", ["email"], name: "index_laborers_on_email", unique: true
@@ -211,8 +219,10 @@ ActiveRecord::Schema.define(version: 20160617224729) do
     t.integer  "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "client_id"
   end
 
+  add_index "submissions", ["client_id"], name: "index_submissions_on_client_id"
   add_index "submissions", ["job_id"], name: "index_submissions_on_job_id"
   add_index "submissions", ["laborer_id"], name: "index_submissions_on_laborer_id"
 

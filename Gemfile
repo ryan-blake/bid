@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://code.stripe.com'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -71,3 +72,4 @@ gem "refile", require: 'refile/rails', git: "https://github.com/refile/refile.gi
 gem "refile-mini_magick"
 gem 'refile-s3'
 gem 'aws-sdk'
+gem 'omniauth-stripe-connect'

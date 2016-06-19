@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get '/auth/stripe_connect/callback', to: 'stripe_connect#create'
+
+
   get 'messegas/new'
 
   get 'messegas/create'
