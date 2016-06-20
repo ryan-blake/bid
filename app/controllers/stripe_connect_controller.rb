@@ -1,4 +1,3 @@
-
 class StripeConnectController < ApplicationController
 
   def create

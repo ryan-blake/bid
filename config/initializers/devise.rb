@@ -262,6 +262,7 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the clients scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/clients/auth'
+  OmniAuth.config.on_failure = Proc.new { |env| AuthenticationsController.action(:failure).call(env) }
 
 
 end

@@ -35,7 +35,7 @@ class Laborer < ActiveRecord::Base
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
   has_many :jobs
   has_many :clients, through: :jobs
   enum role: [:standard, :premium, :admin]
