@@ -42,28 +42,30 @@
           <!--displays current bids/submissions and laborer show view  -->
           <strong> choose the winning bid when ready. </strong>
           <br>
-        <table>
+          <table>
+           <% count = 0 %>
+           <% @submissions.each do | p | %>
+           <%= count += 1 %>:
+              <tr> <%= gravatar_for p.laborer, 45%>
+              <tr> <%= link_to p.laborer.name + "'s" + " profile" + "\n", p.laborer %>
+           <%end%>
+         </table>
+         <table>
           <% count = 0 %>
           <%= form_for @job do |f| %>
+          <div>
             <%= f.collection_radio_buttons(:selected_submission_id, @submissions, :id, :pretty_print) do |b| %>
             <%= count += 1 %>:
             <%= b.label(class: "radio_button", "data-value": b.value ) { b.radio_button(class: "radio_button") + b.text } %>
-          <% end %>
+          </div>
           <br>
-        </table>
-        <table>
-         <% count = 0 %>
-         <% @submissions.each do | p | %>
-         <%= count += 1 %>:
-            <tr> <%= gravatar_for p.laborer, 45%>
-            <tr> <%= link_to p.laborer.name + "'s" + " profile" + "\n", p.laborer %>
-         <%end%>
-         <div>
+
            <br>
            <%= f.submit 'Confirm Bid' %>
-         </div>
-      <% end %>
+       </table>
+       <% end %>
 
+      <% end %>
     <%end%>
     <% else %>
 <!-- shows no bids text -->
