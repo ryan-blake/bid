@@ -37,6 +37,7 @@ class Client < ActiveRecord::Base
   :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :jobs
   has_many :laborers, through: :jobs
+  has_many :paid_charges, class_name: 'Charge'
   has_one :selected_submission
   enum role: [:standard, :premium, :admin]
 

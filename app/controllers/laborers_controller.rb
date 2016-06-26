@@ -63,6 +63,6 @@ class LaborersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def laborer_params
-      params.require(:laborer).permit(:name, :about, :email, :address1, :address2, :city, :state, :zipcode, :latitude, :longitude)
+      params.require(:laborer).permit(:name, :about, :email, :address1, :address2, :city, :state, :zipcode, :latitude, :longitude, :provider, :uid, :access_code, :publishable_key)
     end
 end

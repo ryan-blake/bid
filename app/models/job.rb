@@ -20,8 +20,10 @@
 #  state                  :string
 #  zipcode                :integer
 #  file_id                :string
-#  profession             :string
+#  profession_id          :integer
+#  distance_id            :integer
 #  job_id                 :integer
+#  finished               :boolean
 #
 
 # if Job.profession == lawn

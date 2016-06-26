@@ -7,7 +7,15 @@ Rails.application.routes.draw do
   resources :charges, only: [:new, :create]
 
   devise_for :clients
-  devise_for :laborers
+  devise_for :laborers, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+
+  devise_scope :user do
+   get '/laborers/auth/stripe_connect/callback' => 'omniauth_callbacks#stripe_connect'
+   post '/laborers/auth/stripe_connect/callback' => 'omniauth_callbacks#stripe_connect'
+ end
+
+  get 'complete_charge' => 'charges#complete'
+
 
   resources :clients
 

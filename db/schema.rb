@@ -11,13 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626184739) do
+ActiveRecord::Schema.define(version: 20160626193344) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "charges", force: :cascade do |t|
+    t.integer  "client_id"
+    t.integer  "laborer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "job"
+    t.integer  "price"
+    t.string   "token"
+    t.string   "customer_id"
+    t.boolean  "completed"
+  end
+
+  add_index "charges", ["client_id"], name: "index_charges_on_client_id"
+  add_index "charges", ["laborer_id"], name: "index_charges_on_laborer_id"
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -86,6 +101,7 @@ ActiveRecord::Schema.define(version: 20160626184739) do
     t.integer  "profession_id"
     t.integer  "distance_id"
     t.integer  "job_id"
+    t.boolean  "finished"
   end
 
   add_index "jobs", ["category_id"], name: "index_jobs_on_category_id"

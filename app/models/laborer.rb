@@ -29,16 +29,21 @@
 #  city                   :string
 #  state                  :string
 #  zipcode                :integer
+#  publishable_key        :string
+#  provider               :string
+#  uid                    :string
+#  access_code            :string
 #
 
 class Laborer < ActiveRecord::Base
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
   has_many :jobs
   has_many :clients, through: :jobs
   enum role: [:standard, :premium, :admin]
+  has_many :received_charges, class_name: 'Charge'
   has_many :submits, :as => :submittable
   has_many :reviews
   #? submissions?

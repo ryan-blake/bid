@@ -38,6 +38,24 @@
           <!-- if selected submission renders direct message with chosen laborer -->
           <%= link_to "Talk With #{@job.selected_submission.laborer.name}", new_message_path(to: @job.selected_submission.laborer.id) %>
         <p>
+          <!-- charge form -->
+          <div class="puppy-button">
+        <%= form_for @charge do |f| %>
+          <%= f.hidden_field :amount, value: job.selected_submission.price %>
+          <%= f.hidden_field :job, value: job.title %>
+          <%= f.hidden_field :owner_id, value: job.client.id %>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key=ENV["PUBLISHABLE_KEY"] data-amount="<%= @job.selected_submission.price*100 %>"
+          data-name="JobAssign" data-description="<%= number_to_currency(job.selected_submission.price) %>"
+          data-image: "/assets/images/star.png">
+        </script>
+
+
+      <%= my_charge = Charge.find_by(item: puppy.name, user_id: current_user.id, completed: false) %>
+      <% if my_charge %>
+        <% div class="button" %>
+          <%= link_to 'My job finished!', complete_charge_path(charge_id: my_charge.id, token: my_charge.token, price: my_charge.price, customer_id: my_charge.customer_id, destination: my_charge.laborer.uid) %>
+
        <% else %>
           <!--displays current bids/submissions and laborer show view  -->
           <strong> choose the winning bid when ready. </strong>
