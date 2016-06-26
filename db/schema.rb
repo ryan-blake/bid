@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617224729) do
+ActiveRecord::Schema.define(version: 20160626184739) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -121,6 +121,10 @@ ActiveRecord::Schema.define(version: 20160617224729) do
     t.string   "city"
     t.string   "state"
     t.integer  "zipcode"
+    t.string   "publishable_key"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "access_code"
   end
 
   add_index "laborers", ["email"], name: "index_laborers_on_email", unique: true
