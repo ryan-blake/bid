@@ -263,7 +263,7 @@ Devise.setup do |config|
   # so you need to do it manually. For the clients scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/clients/auth'
   config.omniauth :stripe_connect,
-                ENV['CONNECT_CLIENT_ID'],
+                ENV['STRIPE_CONNECT_CLIENT_ID'],
                 ENV['SECRET_KEY'],
                 :scope => 'read_write',
                 :stripe_landing => 'register'
