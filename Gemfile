@@ -23,6 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # rspec test
 gem 'rspec-rails', '~> 3.4.2'
 #serve assets
+gem 'haml'
 
 
 # Use ActiveModel has_secure_password

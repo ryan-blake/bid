@@ -1,4 +1,5 @@
 <!--      Job information  -->
+
 <div>
   <h1>
     <%= @job.title %>
@@ -37,6 +38,9 @@
           Selected Submission: <%= @job.selected_submission.pretty_print %>.
           <!-- if selected submission renders direct message with chosen laborer -->
           <%= link_to "Talk With #{@job.selected_submission.laborer.name}", new_message_path(to: @job.selected_submission.laborer.id) %>
+          <%= link_to "Get Premium Account", new_charge_path, class: 'btn btn-success' %> </h5>
+          <%=link_to "Buy Now", payments_new_path(@client,@job),class: "btn btn-lg btn-success text-center" %>
+
         <p>
        <% else %>
           <!--displays current bids/submissions and laborer show view  -->

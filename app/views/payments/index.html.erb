@@ -1,0 +1,17 @@
+-@payments.each do |payment|
+        %tr
+          %td
+            =payment.name
+          %td
+            =payment.email
+          %td
+            =payment.created_at
+          %td
+            =payment.receipt
+          %td
+          <% @payments.each do |payment| %>
+            <%= payment.user_id %>
+            <%= payment.laborer_id %>
+            <%= payment.email %>
+            <%= payment.receipt %>
+<% end %>

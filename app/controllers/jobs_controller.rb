@@ -32,7 +32,6 @@ class JobsController < ApplicationController
       return
     end
 
-
     if @job.update_attributes(job_params)
       flash[:notice] = "Job was updated."
       # #37

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'payments/index'
+
+  get 'payments/create'
+
+  get 'payments/show'
+
+  get 'payments/new'
+
   get 'messegas/new'
 
   get 'messegas/create'

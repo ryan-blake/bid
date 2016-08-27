@@ -29,6 +29,10 @@
 #  city                   :string
 #  state                  :string
 #  zipcode                :integer
+#  publishable_key        :string
+#  provider               :string
+#  uid                    :string
+#  access_code            :string
 #
 
 require 'rails_helper'

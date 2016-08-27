@@ -20,7 +20,8 @@
 #  state                  :string
 #  zipcode                :integer
 #  file_id                :string
-#  profession             :string
+#  profession_id          :integer
+#  distance_id            :integer
 #  job_id                 :integer
 #
 
@@ -31,6 +32,7 @@
 
 
 class Job < ActiveRecord::Base
+  has_many :payments
   belongs_to :laborer
   belongs_to :client
   belongs_to :category
