@@ -268,5 +268,4 @@ Devise.setup do |config|
                 :scope => 'read_write',
                 :stripe_landing => 'register'
 
-
 end

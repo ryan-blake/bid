@@ -8,7 +8,6 @@
 #  price      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#
 
 class Submission < ActiveRecord::Base
   belongs_to :job
@@ -17,7 +16,8 @@ class Submission < ActiveRecord::Base
 
   def pretty_print
     " $#{price}.00 by #{laborer.name}. "
-
   end
+
+  
 
 end

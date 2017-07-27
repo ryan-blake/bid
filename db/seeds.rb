@@ -99,7 +99,7 @@ end
     end
     distances = Distance.all
 
-  category_array = %w(Mulch Trees Mowing Garden Rocks Grass Trimming)
+  category_array = %w(Mulch Trees Mowing Garden Rocks Grass Trimming Power-Washing)
 
   category_array.each do |c|
     Category.find_or_create_by(

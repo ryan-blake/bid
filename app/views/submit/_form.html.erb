@@ -2,7 +2,6 @@
   <% if submit.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(item.errors.count, "error") %> prohibited this job from being saved:</h2>
-
       <ul>
       <% submit.errors.full_messages.each do |message| %>
         <li><%= message %></li>

@@ -29,6 +29,10 @@
 #  city                   :string
 #  state                  :string
 #  zipcode                :integer
+#  publishable_key        :string
+#  provider               :string
+#  uid                    :string
+#  access_code            :string
 #
 
 class Laborer < ActiveRecord::Base
